@@ -1,6 +1,6 @@
-import Loft from './loft/Loft';
+//index.ts
+import LoftController from './loft/LoftController';
 
-type Controller = typeof Loft;
-const controllers = <Controller[]>[Loft];
+const controllers = [LoftController];
 
 export { controllers };
