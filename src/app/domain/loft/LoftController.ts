@@ -56,31 +56,31 @@ export default class LoftController {
   @Post('/my-photos')
   async createMyPhoto(@Body() body: ILoft) {
     const created = await createMyPhoto(body);
-    return { success: true, data: created };
+    return { success: true, data: created.toObject() };
   }
   @Post('/internet-photos')
   async createPhotosFromInternet(@Body() body: ILoft) {
     const created = await createPhotosFromInternet(body);
-    return { success: true, data: created };
+    return { success: true, data: created.toObject() };
   }
   @Post('/my-videos')
   async createMyVideos(@Body() body: ILoft) {
     const created = await createMyVideos(body);
-    return { success: true, data: created };
+    return { success: true, data: created.toObject() };
   }
   @Post('/internet-videos')
   async createVideosFromInternet(@Body() body: ILoft) {
     const created = await createVideosFromInternet(body);
-    return { success: true, data: created };
+    return { success: true, data: created.toObject() };
   }
   @Post('/my-equipment')
   async createMyEquipment(@Body() body: ILoft) {
     const created = await createMyEquipment(body);
-    return { success: true, data: created };
+    return { success: true, data: created.toObject() };
   }
   @Post('/how-to')
   async createHowToDoIt(@Body() body: ILoft) {
     const created = await createHowToDoIt(body);
-    return { success: true, data: created };
+    return { success: true, data: created.toObject() };
   }
 }
