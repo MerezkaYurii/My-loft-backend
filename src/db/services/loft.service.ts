@@ -1,5 +1,5 @@
 // db/services/loft.service.ts
-
+import { Model } from 'mongoose';
 import {
   howToDoItModel,
   ILoft,
@@ -34,4 +34,31 @@ export const createMyEquipment = (data: Partial<ILoft>) => {
 };
 export const createHowToDoIt = (data: Partial<ILoft>) => {
   return howToDoItModel.create(data);
+};
+
+//---------------------------------
+
+export const getLoftItemById = async (category: string, id: string) => {
+  const modelMap: Record<string, Model<ILoft>> = {
+    'my-photos': myPhotoModel,
+    'internet-photos': photoFromInternetModel,
+    'my-videos': myVideoModel,
+    'internet-videos': videoFromInternetModel,
+    'my-equipment': myEquipmentModel,
+    'how-to': howToDoItModel,
+  };
+
+  const model = modelMap[category];
+
+  if (!model) {
+    throw new Error(`Unknown category: ${category}`);
+  }
+
+  const item = await model.findById(id).lean();
+
+  if (!item) {
+    throw new Error(`Item not found in category: ${category}`);
+  }
+
+  return item;
 };

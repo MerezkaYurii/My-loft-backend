@@ -1,4 +1,12 @@
-import { JsonController, Get, Post, Body } from 'routing-controllers';
+import {
+  JsonController,
+  Get,
+  Post,
+  Body,
+  Param,
+  NotFoundError,
+} from 'routing-controllers';
+
 import {
   getMyPhotos,
   getPhotosFromInternet,
@@ -12,6 +20,7 @@ import {
   createVideosFromInternet,
   createMyEquipment,
   createHowToDoIt,
+  getLoftItemById,
 } from 'db/services/loft.service';
 import { ApiResponse } from 'helpers/ApiResponse';
 import { ILoft } from 'db/models/Loft';
@@ -82,5 +91,20 @@ export default class LoftController {
   async createHowToDoIt(@Body() body: ILoft) {
     const created = await createHowToDoIt(body);
     return { success: true, data: created.toObject() };
+  }
+
+  @Get('/:category/:id')
+  async getItemById(
+    @Param('category') category: string,
+    @Param('id') id: string,
+  ) {
+    try {
+      const item = await getLoftItemById(category, id);
+      if (!item) throw new NotFoundError(`Item not found in ${category}`);
+      return { success: true, data: item };
+    } catch (error) {
+      console.error(error);
+      return { success: false, message: error.message };
+    }
   }
 }
