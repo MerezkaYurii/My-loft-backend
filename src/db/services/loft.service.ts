@@ -10,12 +10,53 @@ import {
   videoFromInternetModel,
 } from 'db/models/Loft';
 
-export const getMyPhotos = () => myPhotoModel.find().lean();
-export const getPhotosFromInternet = () => photoFromInternetModel.find().lean();
-export const getMyVideos = () => myVideoModel.find().lean();
-export const getVideosFromInternet = () => videoFromInternetModel.find().lean();
-export const getMyEquipment = () => myEquipmentModel.find().lean();
-export const getHowToDoIt = () => howToDoItModel.find().lean();
+export const getMyPhotos = async () => {
+  const items = await myPhotoModel.find().lean();
+  return items.map((item) => ({
+    ...item,
+    _id: item._id.toString(),
+  }));
+};
+
+export const getPhotosFromInternet = async () => {
+  const items = await photoFromInternetModel.find().lean();
+  return items.map((item) => ({
+    ...item,
+    _id: item._id.toString(),
+  }));
+};
+
+export const getMyVideos = async () => {
+  const items = await myVideoModel.find().lean();
+  return items.map((item) => ({
+    ...item,
+    _id: item._id.toString(),
+  }));
+};
+
+export const getVideosFromInternet = async () => {
+  const items = await videoFromInternetModel.find().lean();
+  return items.map((item) => ({
+    ...item,
+    _id: item._id.toString(),
+  }));
+};
+
+export const getMyEquipment = async () => {
+  const items = await myEquipmentModel.find().lean();
+  return items.map((item) => ({
+    ...item,
+    _id: item._id.toString(),
+  }));
+};
+
+export const getHowToDoIt = async () => {
+  const items = await howToDoItModel.find().lean();
+  return items.map((item) => ({
+    ...item,
+    _id: item._id.toString(),
+  }));
+};
 
 export const createMyPhoto = (data: Partial<ILoft>) => {
   return myPhotoModel.create(data);
@@ -54,11 +95,16 @@ export const getLoftItemById = async (category: string, id: string) => {
     throw new Error(`Unknown category: ${category}`);
   }
 
-  const item = await model.findById(id).lean();
+  const doc = await model.findById(id);
 
-  if (!item) {
+  if (!doc) {
     throw new Error(`Item not found in category: ${category}`);
   }
 
-  return item;
+  const item = doc.toObject();
+
+  return {
+    ...item,
+    _id: doc._id.toString(),
+  };
 };

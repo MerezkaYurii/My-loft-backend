@@ -1,6 +1,7 @@
-import { Document, Schema, model } from 'mongoose';
+import { Document, Schema, Types, model } from 'mongoose';
 
 export interface ILoft extends Document {
+  _id: Types.ObjectId;
   title: string;
   description?: string;
   thumbnail: string;
@@ -27,10 +28,11 @@ const loftSchema = new Schema<ILoft>(
       required: true,
     },
   },
-
-  { timestamps: true },
+  {
+    timestamps: true,
+    versionKey: false,
+  },
 );
-
 export const myPhotoModel = model<ILoft>('My_photo', loftSchema, 'My_photo');
 export const photoFromInternetModel = model<ILoft>(
   'Photo_from_internet',
