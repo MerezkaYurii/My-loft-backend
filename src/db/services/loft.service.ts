@@ -15,6 +15,7 @@ export const getMyPhotos = async () => {
   return items.map((item) => ({
     ...item,
     _id: item._id.toString(),
+    category: 'my-photos',
   }));
 };
 
@@ -23,6 +24,7 @@ export const getPhotosFromInternet = async () => {
   return items.map((item) => ({
     ...item,
     _id: item._id.toString(),
+    category: 'internet-photos',
   }));
 };
 
@@ -31,6 +33,7 @@ export const getMyVideos = async () => {
   return items.map((item) => ({
     ...item,
     _id: item._id.toString(),
+    category: 'my-videos',
   }));
 };
 
@@ -39,6 +42,7 @@ export const getVideosFromInternet = async () => {
   return items.map((item) => ({
     ...item,
     _id: item._id.toString(),
+    category: 'internet-videos',
   }));
 };
 
@@ -47,6 +51,7 @@ export const getMyEquipment = async () => {
   return items.map((item) => ({
     ...item,
     _id: item._id.toString(),
+    category: 'my-equipment',
   }));
 };
 
@@ -55,6 +60,7 @@ export const getHowToDoIt = async () => {
   return items.map((item) => ({
     ...item,
     _id: item._id.toString(),
+    category: 'how-to',
   }));
 };
 
@@ -106,5 +112,6 @@ export const getLoftItemById = async (category: string, id: string) => {
   return {
     ...item,
     _id: doc._id.toString(),
+    category,
   };
 };
