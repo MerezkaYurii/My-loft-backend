@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import express from 'express';
 import { Tcp } from './infra/Tcp';
 import { initMongoConnection } from 'db/initMongoConnection';
 

@@ -40,7 +40,7 @@ export class Tcp implements IService {
       validation: false, // Відключаємо вбудовану валідацію, щоб ми могли перевірити DTO самі всередині контролера
     }); // Повертаємо Promise, який успішно виконується, коли сервер починає слухати порт
 
-    const port = Number(process.env.PORT);
+    const port = Number(process.env.PORT) || 4000;
 
     return new Promise<boolean>((resolve) => {
       server.listen(port, () => {
