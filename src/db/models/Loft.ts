@@ -5,6 +5,7 @@ export interface ILoft extends Document {
   title: string;
   description?: string;
   thumbnail: string;
+  category: string;
   type: 'photo' | 'video';
 }
 
@@ -20,11 +21,15 @@ const loftSchema = new Schema<ILoft>(
     },
     thumbnail: {
       type: String,
-      required: true,
+      required: false,
     },
     type: {
       type: String,
       enum: ['photo', 'video'],
+      required: true,
+    },
+    category: {
+      type: String,
       required: true,
     },
   },
@@ -55,3 +60,5 @@ export const howToDoItModel = model<ILoft>(
   loftSchema,
   'How_to_do_it_correctly',
 );
+
+export const LoftItem = model<ILoft>('LoftItem', loftSchema);

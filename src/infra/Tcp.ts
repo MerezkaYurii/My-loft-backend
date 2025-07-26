@@ -7,6 +7,7 @@ import { IService } from 'types/services';
 import { controllers } from '@app/domain/index';
 import { middlewares } from '@app/middlewares/index';
 import dotenv from 'dotenv';
+import { upload } from '@app/middlewares/upload.middleware';
 dotenv.config();
 
 // Оголошуємо клас Tcp, який реалізує інтерфейс IService
@@ -27,7 +28,18 @@ export class Tcp implements IService {
 
   async init() {
     const { server, routePrefix } = this;
+    // server.use(upload.single('file'));
+    server.use((req, res, next) => {
+      console.log('🧩 RAW HEADERS:', req.headers['content-type']);
+      next();
+    });
 
+    // 🧠 Добавляем поддержку multipart/form-data
+    // const upload = multer();
+
+    // server.use(upload.any());
+    server.use(express.json());
+    server.use(express.urlencoded({ extended: true }));
     // Парсимо тіло запиту, потрібно для middlewares
     // server.use(express.json()); // Використовуємо бібліотеку routing-controllers для налаштування маршрутів
 
@@ -36,7 +48,7 @@ export class Tcp implements IService {
       controllers,
       middlewares,
       cors: true,
-      defaultErrorHandler: true,
+      defaultErrorHandler: false,
       validation: false, // Відключаємо вбудовану валідацію, щоб ми могли перевірити DTO самі всередині контролера
     }); // Повертаємо Promise, який успішно виконується, коли сервер починає слухати порт
 
