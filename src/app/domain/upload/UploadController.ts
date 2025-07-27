@@ -2,7 +2,14 @@ import { JsonController, Post, Res, Req, UseBefore } from 'routing-controllers';
 import { Response } from 'express';
 import cloudinary from 'utils/cloudinary';
 import { UploadApiResponse } from 'cloudinary';
-import { LoftItem } from 'db/models/Loft';
+import {
+  howToDoItModel,
+  myEquipmentModel,
+  myPhotoModel,
+  myVideoModel,
+  photoFromInternetModel,
+  videoFromInternetModel,
+} from 'db/models/Loft';
 import { upload } from '@app/middlewares/upload.middleware';
 import { Request as ExpressRequest } from 'express';
 
@@ -18,6 +25,15 @@ interface UploadRequest extends ExpressRequest {
   body: UploadBody;
   file?: Express.Multer.File;
 }
+
+const modelsMap = {
+  myPhoto: myPhotoModel,
+  photoFromInternet: photoFromInternetModel,
+  myVideo: myVideoModel,
+  videoFromInternet: videoFromInternetModel,
+  myEquipment: myEquipmentModel,
+  howToDoIt: howToDoItModel,
+};
 
 @JsonController('/upload')
 export class UploadController {
@@ -70,7 +86,22 @@ export class UploadController {
         return res.status(400).json({ error: 'No file or thumbnail provided' });
       }
 
-      const newItem = new LoftItem({
+      const categoryAliasMap = {
+        'my-videos': 'myVideo',
+        'my-photos': 'myPhoto',
+        'video-from-internet': 'videoFromInternet',
+        'photo-from-internet': 'photoFromInternet',
+        'how-to-do-it': 'howToDoIt',
+        'my-equipment': 'myEquipment',
+      };
+
+      const realCategory = categoryAliasMap[category] || category;
+      const model = modelsMap[realCategory as keyof typeof modelsMap];
+      if (!model) {
+        return res.status(400).json({ error: `Unknown category: ${category}` });
+      }
+
+      const newItem = await model.create({
         title,
         description,
         thumbnail: finalUrl,
