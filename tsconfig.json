@@ -18,7 +18,9 @@
     "paths": {
       "@app/*": ["app/*"],
       "@infra/*": ["infra/*"],
-      "@types/*": ["types/*"]
+      "@types/*": ["types/*"],
+      "db/*": ["db/*"]
     }
-  }
+  },
+  "exclude": ["node_modules", "dist"]
 }

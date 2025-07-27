@@ -10,7 +10,8 @@ import {
   photoFromInternetModel,
   videoFromInternetModel,
 } from 'db/models/Loft';
-import { upload } from '@app/middlewares/upload.middleware';
+// import { upload } from '@app/middlewares/upload.middleware';
+import { upload } from '../../middlewares/upload.middleware';
 import { Request as ExpressRequest } from 'express';
 
 class UploadBody {

@@ -4,10 +4,10 @@ import { useExpressServer } from 'routing-controllers';
 
 // Імпортуємо наш інтерфейс сервісу і контролери
 import { IService } from 'types/services';
-import { controllers } from '@app/domain/index';
-import { middlewares } from '@app/middlewares/index';
+import { controllers } from '../app/domain/index';
+import { middlewares } from '../app/middlewares/index';
 import dotenv from 'dotenv';
-import { upload } from '@app/middlewares/upload.middleware';
+
 dotenv.config();
 
 // Оголошуємо клас Tcp, який реалізує інтерфейс IService
