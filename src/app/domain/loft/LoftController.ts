@@ -7,6 +7,22 @@ import {
   NotFoundError,
 } from 'routing-controllers';
 
+// import {
+//   getMyPhotos,
+//   getPhotosFromInternet,
+//   getMyVideos,
+//   getVideosFromInternet,
+//   getMyEquipment,
+//   getHowToDoIt,
+//   createMyPhoto,
+//   createPhotosFromInternet,
+//   createMyVideos,
+//   createVideosFromInternet,
+//   createMyEquipment,
+//   createHowToDoIt,
+//   getLoftItemById,
+// } from 'db/services/loft.service';
+
 import {
   getMyPhotos,
   getPhotosFromInternet,
@@ -21,7 +37,8 @@ import {
   createMyEquipment,
   createHowToDoIt,
   getLoftItemById,
-} from 'db/services/loft.service';
+} from '../../../db/services/loft.service';
+
 import { ApiResponse } from 'helpers/ApiResponse';
 import { ILoft } from 'db/models/Loft';
 

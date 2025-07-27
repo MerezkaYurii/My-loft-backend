@@ -9,7 +9,6 @@
     "lib": ["ES2021"],
     "module": "CommonJS",
     "moduleResolution": "node",
-    // "baseUrl": "./src",
     "baseUrl": "./src",
     "outDir": "./dist",
     "skipLibCheck": true,
@@ -19,8 +18,10 @@
     "paths": {
       "@app/*": ["app/*"],
       "@infra/*": ["infra/*"],
-      "@types/*": ["types/*"]
+      "@types/*": ["types/*"],
+      "db/*": ["db/*"]
     }
   },
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
 }
