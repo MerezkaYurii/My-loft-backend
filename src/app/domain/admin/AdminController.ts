@@ -5,6 +5,15 @@ import {
   Body,
   BadRequestError,
 } from 'routing-controllers';
+// import {
+//   howToDoItModel,
+//   myEquipmentModel,
+//   myPhotoModel,
+//   myVideoModel,
+//   photoFromInternetModel,
+//   videoFromInternetModel,
+// } from 'db/models/Loft';
+
 import {
   howToDoItModel,
   myEquipmentModel,
@@ -12,8 +21,10 @@ import {
   myVideoModel,
   photoFromInternetModel,
   videoFromInternetModel,
-} from 'db/models/Loft';
-import { ApiResponse } from 'helpers/ApiResponse';
+} from '../../../db/models/Loft';
+
+// import { ApiResponse } from 'helpers/ApiResponse';
+import { ApiResponse } from '../../../helpers/ApiResponse';
 
 const modelsMap = {
   myPhoto: myPhotoModel,

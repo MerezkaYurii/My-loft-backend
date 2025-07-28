@@ -1,5 +1,15 @@
 // db/services/loft.service.ts
 import { Model } from 'mongoose';
+// import {
+//   howToDoItModel,
+//   ILoft,
+//   myEquipmentModel,
+//   myPhotoModel,
+//   myVideoModel,
+//   photoFromInternetModel,
+//   videoFromInternetModel,
+// } from 'db/models/Loft';
+
 import {
   howToDoItModel,
   ILoft,
@@ -8,7 +18,7 @@ import {
   myVideoModel,
   photoFromInternetModel,
   videoFromInternetModel,
-} from 'db/models/Loft';
+} from '../../db/models/Loft';
 
 export const getMyPhotos = async () => {
   const items = await myPhotoModel.find().lean();

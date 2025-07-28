@@ -14,8 +14,17 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 // src/app/domain/admin/AdminController.ts
 const routing_controllers_1 = require("routing-controllers");
-const Loft_1 = require("db/models/Loft");
-const ApiResponse_1 = require("helpers/ApiResponse");
+// import {
+//   howToDoItModel,
+//   myEquipmentModel,
+//   myPhotoModel,
+//   myVideoModel,
+//   photoFromInternetModel,
+//   videoFromInternetModel,
+// } from 'db/models/Loft';
+const Loft_1 = require("../../../db/models/Loft");
+// import { ApiResponse } from 'helpers/ApiResponse';
+const ApiResponse_1 = require("../../../helpers/ApiResponse");
 const modelsMap = {
     myPhoto: Loft_1.myPhotoModel,
     photoFromInternet: Loft_1.photoFromInternetModel,

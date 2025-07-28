@@ -3,7 +3,8 @@ import express from 'express';
 import { useExpressServer } from 'routing-controllers';
 
 // Імпортуємо наш інтерфейс сервісу і контролери
-import { IService } from 'types/services';
+// import { IService } from 'types/services';
+import { IService } from '../types/services';
 import { controllers } from '../app/domain/index';
 import { middlewares } from '../app/middlewares/index';
 import dotenv from 'dotenv';

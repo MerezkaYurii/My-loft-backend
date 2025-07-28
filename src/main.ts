@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 
 import { Tcp } from './infra/Tcp';
-import { initMongoConnection } from 'db/initMongoConnection';
+import { initMongoConnection } from './db/initMongoConnection';
 
 async function bootstrap() {
   await initMongoConnection();

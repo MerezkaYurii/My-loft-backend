@@ -17,8 +17,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UploadController = void 0;
 const routing_controllers_1 = require("routing-controllers");
-const cloudinary_1 = __importDefault(require("utils/cloudinary"));
-const Loft_1 = require("db/models/Loft");
+// import cloudinary from 'utils/cloudinary';
+const cloudinary_1 = __importDefault(require("../../../utils/cloudinary"));
+// import {
+//   howToDoItModel,
+//   myEquipmentModel,
+//   myPhotoModel,
+//   myVideoModel,
+//   photoFromInternetModel,
+//   videoFromInternetModel,
+// } from 'db/models/Loft';
+const Loft_1 = require("../../../db/models/Loft");
 // import { upload } from '@app/middlewares/upload.middleware';
 const upload_middleware_1 = require("../../middlewares/upload.middleware");
 class UploadBody {

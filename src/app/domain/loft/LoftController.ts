@@ -39,8 +39,10 @@ import {
   getLoftItemById,
 } from '../../../db/services/loft.service';
 
-import { ApiResponse } from 'helpers/ApiResponse';
-import { ILoft } from 'db/models/Loft';
+// import { ApiResponse } from 'helpers/ApiResponse';
+import { ApiResponse } from '../../../helpers/ApiResponse';
+// import { ILoft } from 'db/models/Loft';
+import { ILoft } from '../../../db/models/Loft';
 
 @JsonController('/loft')
 export default class LoftController {

@@ -1,7 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getLoftItemById = exports.createHowToDoIt = exports.createMyEquipment = exports.createVideosFromInternet = exports.createMyVideos = exports.createPhotosFromInternet = exports.createMyPhoto = exports.getHowToDoIt = exports.getMyEquipment = exports.getVideosFromInternet = exports.getMyVideos = exports.getPhotosFromInternet = exports.getMyPhotos = void 0;
-const Loft_1 = require("db/models/Loft");
+// import {
+//   howToDoItModel,
+//   ILoft,
+//   myEquipmentModel,
+//   myPhotoModel,
+//   myVideoModel,
+//   photoFromInternetModel,
+//   videoFromInternetModel,
+// } from 'db/models/Loft';
+const Loft_1 = require("../../db/models/Loft");
 const getMyPhotos = async () => {
     const items = await Loft_1.myPhotoModel.find().lean();
     return items.map((item) => ({

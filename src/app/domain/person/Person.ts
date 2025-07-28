@@ -6,11 +6,14 @@ import {
   Param,
   UseAfter,
 } from 'routing-controllers';
-import { HTTPResponseLogger } from 'app/middlewares/HTTPResponseLogger';
+// import { HTTPResponseLogger } from 'app/middlewares/HTTPResponseLogger';
+import { HTTPResponseLogger } from '../../middlewares/HTTPResponseLogger';
 import { IPerson } from './Person.types';
 import { validate } from 'class-validator';
-import { ApiResponse } from 'helpers/ApiResponse';
-import { ApiError } from 'helpers/ApiError';
+// import { ApiResponse } from 'helpers/ApiResponse';
+import { ApiResponse } from '../../../helpers/ApiResponse';
+// import { ApiError } from 'helpers/ApiError';
+import { ApiError } from '../../../helpers/ApiError';
 import { CreatePerson } from './CreatePerson.dto';
 
 const storeData: IPerson[] = [];

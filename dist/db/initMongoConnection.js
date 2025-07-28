@@ -5,7 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.initMongoConnection = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
-const getEnvVar_1 = require("utils/getEnvVar");
+// import { getEnvVar } from 'utils/getEnvVar';
+const getEnvVar_1 = require("../utils/getEnvVar");
 const initMongoConnection = async () => {
     try {
         const user = (0, getEnvVar_1.getEnvVar)('MONGODB_USER');

@@ -1,7 +1,16 @@
 import { JsonController, Post, Res, Req, UseBefore } from 'routing-controllers';
 import { Response } from 'express';
-import cloudinary from 'utils/cloudinary';
+// import cloudinary from 'utils/cloudinary';
+import cloudinary from '../../../utils/cloudinary';
 import { UploadApiResponse } from 'cloudinary';
+// import {
+//   howToDoItModel,
+//   myEquipmentModel,
+//   myPhotoModel,
+//   myVideoModel,
+//   photoFromInternetModel,
+//   videoFromInternetModel,
+// } from 'db/models/Loft';
 import {
   howToDoItModel,
   myEquipmentModel,
@@ -9,7 +18,7 @@ import {
   myVideoModel,
   photoFromInternetModel,
   videoFromInternetModel,
-} from 'db/models/Loft';
+} from '../../../db/models/Loft';
 // import { upload } from '@app/middlewares/upload.middleware';
 import { upload } from '../../middlewares/upload.middleware';
 import { Request as ExpressRequest } from 'express';

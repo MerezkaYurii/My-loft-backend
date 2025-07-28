@@ -13,8 +13,24 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const routing_controllers_1 = require("routing-controllers");
-const loft_service_1 = require("db/services/loft.service");
-const ApiResponse_1 = require("helpers/ApiResponse");
+// import {
+//   getMyPhotos,
+//   getPhotosFromInternet,
+//   getMyVideos,
+//   getVideosFromInternet,
+//   getMyEquipment,
+//   getHowToDoIt,
+//   createMyPhoto,
+//   createPhotosFromInternet,
+//   createMyVideos,
+//   createVideosFromInternet,
+//   createMyEquipment,
+//   createHowToDoIt,
+//   getLoftItemById,
+// } from 'db/services/loft.service';
+const loft_service_1 = require("../../../db/services/loft.service");
+// import { ApiResponse } from 'helpers/ApiResponse';
+const ApiResponse_1 = require("../../../helpers/ApiResponse");
 let LoftController = class LoftController {
     async getMyPhotosList() {
         const data = await (0, loft_service_1.getMyPhotos)();
