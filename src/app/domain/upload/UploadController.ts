@@ -39,10 +39,14 @@ interface UploadRequest extends ExpressRequest {
 const modelsMap = {
   myPhoto: myPhotoModel,
   photoFromInternet: photoFromInternetModel,
+  'internet-photos': photoFromInternetModel,
   myVideo: myVideoModel,
   videoFromInternet: videoFromInternetModel,
+  'internet-videos': videoFromInternetModel, 
   myEquipment: myEquipmentModel,
+  'my-equipment': myEquipmentModel,
   howToDoIt: howToDoItModel,
+  'how-to': howToDoItModel,
 };
 
 @JsonController('/upload')

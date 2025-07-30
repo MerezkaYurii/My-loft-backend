@@ -47,6 +47,14 @@ interface CreateLoftDto {
     | 'myEquipment'
     | 'howToDoIt';
 }
+
+ 
+
+
+
+
+
+
 @JsonController('/admin')
 export default class AdminController {
   @Post('/create-loft')
