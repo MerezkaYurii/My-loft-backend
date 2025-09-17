@@ -1,16 +1,9 @@
 import { JsonController, Post, Res, Req, UseBefore } from 'routing-controllers';
 import { Response } from 'express';
-// import cloudinary from 'utils/cloudinary';
+
 import cloudinary from '../../../utils/cloudinary';
 import { UploadApiResponse } from 'cloudinary';
-// import {
-//   howToDoItModel,
-//   myEquipmentModel,
-//   myPhotoModel,
-//   myVideoModel,
-//   photoFromInternetModel,
-//   videoFromInternetModel,
-// } from 'db/models/Loft';
+
 import {
   howToDoItModel,
   myEquipmentModel,
@@ -19,7 +12,7 @@ import {
   photoFromInternetModel,
   videoFromInternetModel,
 } from '../../../db/models/Loft';
-// import { upload } from '@app/middlewares/upload.middleware';
+
 import { upload } from '../../middlewares/upload.middleware';
 import { Request as ExpressRequest } from 'express';
 
@@ -42,7 +35,7 @@ const modelsMap = {
   'internet-photos': photoFromInternetModel,
   myVideo: myVideoModel,
   videoFromInternet: videoFromInternetModel,
-  'internet-videos': videoFromInternetModel, 
+  'internet-videos': videoFromInternetModel,
   myEquipment: myEquipmentModel,
   'my-equipment': myEquipmentModel,
   howToDoIt: howToDoItModel,
@@ -53,12 +46,7 @@ const modelsMap = {
 export class UploadController {
   @Post('/')
   @UseBefore(upload.single('file'))
-  async uploadFile(
-    // @UploadedFile('file') file: Express.Multer.File,
-    // @Body() body: UploadBody,
-    @Req() req: UploadRequest,
-    @Res() res: Response,
-  ) {
+  async uploadFile(@Req() req: UploadRequest, @Res() res: Response) {
     try {
       const body = req.body;
       const file = req.file;

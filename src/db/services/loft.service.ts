@@ -1,14 +1,4 @@
-// db/services/loft.service.ts
 import { Model } from 'mongoose';
-// import {
-//   howToDoItModel,
-//   ILoft,
-//   myEquipmentModel,
-//   myPhotoModel,
-//   myVideoModel,
-//   photoFromInternetModel,
-//   videoFromInternetModel,
-// } from 'db/models/Loft';
 
 import {
   howToDoItModel,
@@ -20,8 +10,14 @@ import {
   videoFromInternetModel,
 } from '../../db/models/Loft';
 
-export const getMyPhotos = async () => {
-  const items = await myPhotoModel.find().lean();
+export const getMyPhotos = async (
+  sort: string = 'createdAt',
+  order: 'asc' | 'desc' = 'desc',
+) => {
+  const sortOption: Record<string, 1 | -1> = {
+    [sort]: order === 'asc' ? 1 : -1,
+  };
+  const items = await myPhotoModel.find().sort(sortOption).lean();
   return items.map((item) => ({
     ...item,
     _id: item._id.toString(),
@@ -29,10 +25,14 @@ export const getMyPhotos = async () => {
   }));
 };
 
-
-
-export const getPhotosFromInternet = async () => {
-  const items = await photoFromInternetModel.find().lean();
+export const getPhotosFromInternet = async (
+  sort: string = 'createdAt',
+  order: 'asc' | 'desc' = 'desc',
+) => {
+  const sortOption: Record<string, 1 | -1> = {
+    [sort]: order === 'asc' ? 1 : -1,
+  };
+  const items = await photoFromInternetModel.find().sort(sortOption).lean();
   return items.map((item) => ({
     ...item,
     _id: item._id.toString(),
@@ -40,8 +40,14 @@ export const getPhotosFromInternet = async () => {
   }));
 };
 
-export const getMyVideos = async () => {
-  const items = await myVideoModel.find().lean();
+export const getMyVideos = async (
+  sort: string = 'createdAt',
+  order: 'asc' | 'desc' = 'desc',
+) => {
+  const sortOption: Record<string, 1 | -1> = {
+    [sort]: order === 'asc' ? 1 : -1,
+  };
+  const items = await myVideoModel.find().sort(sortOption).lean();
   return items.map((item) => ({
     ...item,
     _id: item._id.toString(),
@@ -49,8 +55,14 @@ export const getMyVideos = async () => {
   }));
 };
 
-export const getVideosFromInternet = async () => {
-  const items = await videoFromInternetModel.find().lean();
+export const getVideosFromInternet = async (
+  sort: string = 'createdAt',
+  order: 'asc' | 'desc' = 'desc',
+) => {
+  const sortOption: Record<string, 1 | -1> = {
+    [sort]: order === 'asc' ? 1 : -1,
+  };
+  const items = await videoFromInternetModel.find().sort(sortOption).lean();
   return items.map((item) => ({
     ...item,
     _id: item._id.toString(),
@@ -58,8 +70,14 @@ export const getVideosFromInternet = async () => {
   }));
 };
 
-export const getMyEquipment = async () => {
-  const items = await myEquipmentModel.find().lean();
+export const getMyEquipment = async (
+  sort: string = 'createdAt',
+  order: 'asc' | 'desc' = 'desc',
+) => {
+  const sortOption: Record<string, 1 | -1> = {
+    [sort]: order === 'asc' ? 1 : -1,
+  };
+  const items = await myEquipmentModel.find().sort(sortOption).lean();
   return items.map((item) => ({
     ...item,
     _id: item._id.toString(),
@@ -67,8 +85,14 @@ export const getMyEquipment = async () => {
   }));
 };
 
-export const getHowToDoIt = async () => {
-  const items = await howToDoItModel.find().lean();
+export const getHowToDoIt = async (
+  sort: string = 'createdAt',
+  order: 'asc' | 'desc' = 'desc',
+) => {
+  const sortOption: Record<string, 1 | -1> = {
+    [sort]: order === 'asc' ? 1 : -1,
+  };
+  const items = await howToDoItModel.find().sort(sortOption).lean();
   return items.map((item) => ({
     ...item,
     _id: item._id.toString(),

@@ -33,7 +33,7 @@ export class ContactController {
       const { fields, files } = await parseForm();
 
       const { name, email, message, link } = fields;
-      // const uploadedFile = files.file as File | File[] | undefined;
+
       const uploadedFile = Array.isArray(files.file)
         ? files.file[0]
         : files.file;

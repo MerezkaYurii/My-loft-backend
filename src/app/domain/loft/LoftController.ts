@@ -5,23 +5,8 @@ import {
   Body,
   Param,
   NotFoundError,
+  QueryParam,
 } from 'routing-controllers';
-
-// import {
-//   getMyPhotos,
-//   getPhotosFromInternet,
-//   getMyVideos,
-//   getVideosFromInternet,
-//   getMyEquipment,
-//   getHowToDoIt,
-//   createMyPhoto,
-//   createPhotosFromInternet,
-//   createMyVideos,
-//   createVideosFromInternet,
-//   createMyEquipment,
-//   createHowToDoIt,
-//   getLoftItemById,
-// } from 'db/services/loft.service';
 
 import {
   getMyPhotos,
@@ -39,48 +24,84 @@ import {
   getLoftItemById,
 } from '../../../db/services/loft.service';
 
-// import { ApiResponse } from 'helpers/ApiResponse';
 import { ApiResponse } from '../../../helpers/ApiResponse';
-// import { ILoft } from 'db/models/Loft';
+
 import { ILoft } from '../../../db/models/Loft';
+import { paginate } from 'helpers/paginate';
 
 @JsonController('/loft')
 export default class LoftController {
+  //--------------get--------------
   @Get('/my-photos')
-  async getMyPhotosList() {
-    const data = await getMyPhotos();
-    return new ApiResponse(true, data);
+  async getMyPhotosList(
+    @QueryParam('page') page: number = 1,
+    @QueryParam('limit') limit: number = 8,
+    @QueryParam('sort') sort: string = 'createdAt',
+    @QueryParam('order') order: 'asc' | 'desc' = 'desc',
+  ) {
+    const data = await getMyPhotos(sort, order);
+
+    return new ApiResponse(true, paginate(data, page, limit));
   }
 
   @Get('/internet-photos')
-  async getPhotosFromInternetList() {
-    const data = await getPhotosFromInternet();
-    return new ApiResponse(true, data);
+  async getPhotosFromInternetList(
+    @QueryParam('page') page: number = 1,
+    @QueryParam('limit') limit: number = 8,
+    @QueryParam('sort') sort: string = 'createdAt',
+    @QueryParam('order') order: 'asc' | 'desc' = 'desc',
+  ) {
+    const data = await getPhotosFromInternet(sort, order);
+    return new ApiResponse(true, paginate(data, page, limit));
   }
 
   @Get('/my-videos')
-  async getMyVideosList() {
-    const data = await getMyVideos();
-    return new ApiResponse(true, data);
+  async getMyVideosList(
+    @QueryParam('page') page: number = 1,
+    @QueryParam('limit') limit: number = 8,
+    @QueryParam('sort') sort: string = 'createdAt',
+    @QueryParam('order') order: 'asc' | 'desc' = 'desc',
+  ) {
+    const data = await getMyVideos(sort, order);
+
+    return new ApiResponse(true, paginate(data, page, limit));
   }
 
   @Get('/internet-videos')
-  async getVideosFromInternetList() {
-    const data = await getVideosFromInternet();
-    return new ApiResponse(true, data);
+  async getVideosFromInternetList(
+    @QueryParam('page') page: number = 1,
+    @QueryParam('limit') limit: number = 8,
+    @QueryParam('sort') sort: string = 'createdAt',
+    @QueryParam('order') order: 'asc' | 'desc' = 'desc',
+  ) {
+    const data = await getVideosFromInternet(sort, order);
+
+    return new ApiResponse(true, paginate(data, page, limit));
   }
 
   @Get('/my-equipment')
-  async getMyEquipmentList() {
-    const data = await getMyEquipment();
-    return new ApiResponse(true, data);
+  async getMyEquipmentList(
+    @QueryParam('page') page: number = 1,
+    @QueryParam('limit') limit: number = 8,
+    @QueryParam('sort') sort: string = 'createdAt',
+    @QueryParam('order') order: 'asc' | 'desc' = 'desc',
+  ) {
+    const data = await getMyEquipment(sort, order);
+    return new ApiResponse(true, paginate(data, page, limit));
   }
 
   @Get('/how-to')
-  async getHowToDoItList() {
-    const data = await getHowToDoIt();
-    return new ApiResponse(true, data);
+  async getHowToDoItList(
+    @QueryParam('page') page: number = 1,
+    @QueryParam('limit') limit: number = 8,
+    @QueryParam('sort') sort: string = 'createdAt',
+    @QueryParam('order') order: 'asc' | 'desc' = 'desc',
+  ) {
+    const data = await getHowToDoIt(sort, order);
+    return new ApiResponse(true, paginate(data, page, limit));
   }
+
+  //--------------post-------------------
   @Post('/my-photos')
   async createMyPhoto(@Body() body: ILoft) {
     const created = await createMyPhoto(body);
