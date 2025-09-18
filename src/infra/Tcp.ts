@@ -48,7 +48,11 @@ export class Tcp implements IService {
       routePrefix,
       controllers,
       middlewares,
-      cors: true,
+      cors: {
+        origin: ['https://my-loft-frontend.vercel.app'],
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+        credentials: true,
+      },
       defaultErrorHandler: false,
       validation: false, // Відключаємо вбудовану валідацію, щоб ми могли перевірити DTO самі всередині контролера
     }); // Повертаємо Promise, який успішно виконується, коли сервер починає слухати порт
