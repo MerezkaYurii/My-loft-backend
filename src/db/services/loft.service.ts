@@ -18,6 +18,7 @@ export const getMyPhotos = async (
     [sort]: order === 'asc' ? 1 : -1,
   };
   const items = await myPhotoModel.find().sort(sortOption).lean();
+  console.log('🟢 getMyPhotos length:', items.length);
   return items.map((item) => ({
     ...item,
     _id: item._id.toString(),

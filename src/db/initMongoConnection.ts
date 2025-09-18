@@ -11,6 +11,7 @@ export const initMongoConnection = async (): Promise<void> => {
     await mongoose.connect(
       `mongodb+srv://${user}:${password}@${url}/${name}?retryWrites=true&w=majority&appName=Cluster0`,
     );
+    console.log(`🟢 Connected to MongoDB database: ${name} at cluster: ${url}`);
     console.log('Succesfulli connection to database');
   } catch (error: unknown) {
     if (error instanceof Error) {
