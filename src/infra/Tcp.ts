@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import express from 'express';
 import { useExpressServer } from 'routing-controllers';
-
+import cors from 'cors';
 // Імпортуємо наш інтерфейс сервісу і контролери
 // import { IService } from 'types/services';
 import { IService } from '../types/services';
@@ -39,6 +39,7 @@ export class Tcp implements IService {
     // const upload = multer();
 
     // server.use(upload.any());
+    server.use(cors());
     server.use(express.json());
     server.use(express.urlencoded({ extended: true }));
     // Парсимо тіло запиту, потрібно для middlewares
@@ -48,11 +49,7 @@ export class Tcp implements IService {
       routePrefix,
       controllers,
       middlewares,
-      cors: {
-        origin: ['https://my-loft-frontend.vercel.app'],
-        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-        credentials: true,
-      },
+      cors: true,
       defaultErrorHandler: false,
       validation: false, // Відключаємо вбудовану валідацію, щоб ми могли перевірити DTO самі всередині контролера
     }); // Повертаємо Promise, який успішно виконується, коли сервер починає слухати порт
