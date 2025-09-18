@@ -27,7 +27,6 @@ import {
 import { ApiResponse } from '../../../helpers/ApiResponse';
 
 import { ILoft } from '../../../db/models/Loft';
-import { paginate } from 'helpers/paginate';
 
 @JsonController('/loft')
 export default class LoftController {
@@ -39,9 +38,9 @@ export default class LoftController {
     @QueryParam('sort') sort: string = 'createdAt',
     @QueryParam('order') order: 'asc' | 'desc' = 'desc',
   ) {
-    const data = await getMyPhotos(sort, order);
-
-    return new ApiResponse(true, paginate(data, page, limit));
+    const result = await getMyPhotos(page, limit, sort, order);
+    const { items, pagination } = result.data;
+    return new ApiResponse(true, { items, pagination });
   }
 
   @Get('/internet-photos')
@@ -51,8 +50,9 @@ export default class LoftController {
     @QueryParam('sort') sort: string = 'createdAt',
     @QueryParam('order') order: 'asc' | 'desc' = 'desc',
   ) {
-    const data = await getPhotosFromInternet(sort, order);
-    return new ApiResponse(true, paginate(data, page, limit));
+    const result = await getPhotosFromInternet(page, limit, sort, order);
+    const { items, pagination } = result.data;
+    return new ApiResponse(true, { items, pagination });
   }
 
   @Get('/my-videos')
@@ -62,9 +62,9 @@ export default class LoftController {
     @QueryParam('sort') sort: string = 'createdAt',
     @QueryParam('order') order: 'asc' | 'desc' = 'desc',
   ) {
-    const data = await getMyVideos(sort, order);
-
-    return new ApiResponse(true, paginate(data, page, limit));
+    const result = await getMyVideos(page, limit, sort, order);
+    const { items, pagination } = result.data;
+    return new ApiResponse(true, { items, pagination });
   }
 
   @Get('/internet-videos')
@@ -74,9 +74,9 @@ export default class LoftController {
     @QueryParam('sort') sort: string = 'createdAt',
     @QueryParam('order') order: 'asc' | 'desc' = 'desc',
   ) {
-    const data = await getVideosFromInternet(sort, order);
-
-    return new ApiResponse(true, paginate(data, page, limit));
+    const result = await getVideosFromInternet(page, limit, sort, order);
+    const { items, pagination } = result.data;
+    return new ApiResponse(true, { items, pagination });
   }
 
   @Get('/my-equipment')
@@ -86,8 +86,9 @@ export default class LoftController {
     @QueryParam('sort') sort: string = 'createdAt',
     @QueryParam('order') order: 'asc' | 'desc' = 'desc',
   ) {
-    const data = await getMyEquipment(sort, order);
-    return new ApiResponse(true, paginate(data, page, limit));
+    const result = await getMyEquipment(page, limit, sort, order);
+    const { items, pagination } = result.data;
+    return new ApiResponse(true, { items, pagination });
   }
 
   @Get('/how-to')
@@ -97,8 +98,9 @@ export default class LoftController {
     @QueryParam('sort') sort: string = 'createdAt',
     @QueryParam('order') order: 'asc' | 'desc' = 'desc',
   ) {
-    const data = await getHowToDoIt(sort, order);
-    return new ApiResponse(true, paginate(data, page, limit));
+    const result = await getHowToDoIt(page, limit, sort, order);
+    const { items, pagination } = result.data;
+    return new ApiResponse(true, { items, pagination });
   }
 
   //--------------post-------------------

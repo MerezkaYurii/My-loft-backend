@@ -11,94 +11,224 @@ import {
 } from '../../db/models/Loft';
 
 export const getMyPhotos = async (
+  page: number = 1,
+  limit: number = 8,
   sort: string = 'createdAt',
   order: 'asc' | 'desc' = 'desc',
 ) => {
   const sortOption: Record<string, 1 | -1> = {
     [sort]: order === 'asc' ? 1 : -1,
   };
-  const items = await myPhotoModel.find().sort(sortOption).lean();
-  console.log('🟢 getMyPhotos length:', items.length);
-  return items.map((item) => ({
-    ...item,
-    _id: item._id.toString(),
-    category: 'my-photos',
-  }));
+  const total = await myPhotoModel.countDocuments();
+  const totalPages = Math.ceil(total / limit);
+  const skip = (page - 1) * limit;
+  const items = await myPhotoModel
+    .find()
+    .sort(sortOption)
+    .skip(skip)
+    .limit(limit)
+    .lean();
+
+  return {
+    success: true,
+    data: {
+      items: items.map((item) => ({
+        ...item,
+        _id: item._id.toString(),
+        category: 'my-photos',
+      })),
+      pagination: {
+        page,
+        limit,
+        total,
+        totalPages,
+      },
+    },
+  };
 };
 
 export const getPhotosFromInternet = async (
+  page: number = 1,
+  limit: number = 8,
   sort: string = 'createdAt',
   order: 'asc' | 'desc' = 'desc',
 ) => {
   const sortOption: Record<string, 1 | -1> = {
     [sort]: order === 'asc' ? 1 : -1,
   };
-  const items = await photoFromInternetModel.find().sort(sortOption).lean();
-  return items.map((item) => ({
-    ...item,
-    _id: item._id.toString(),
-    category: 'internet-photos',
-  }));
+  const total = await photoFromInternetModel.countDocuments();
+  const totalPages = Math.ceil(total / limit);
+  const skip = (page - 1) * limit;
+  const items = await photoFromInternetModel
+    .find()
+    .sort(sortOption)
+    .skip(skip)
+    .limit(limit)
+    .lean();
+  return {
+    success: true,
+    data: {
+      items: items.map((item) => ({
+        ...item,
+        _id: item._id.toString(),
+        category: 'internet-photos',
+      })),
+      pagination: {
+        page,
+        limit,
+        total,
+        totalPages,
+      },
+    },
+  };
 };
 
 export const getMyVideos = async (
+  page: number = 1,
+  limit: number = 8,
   sort: string = 'createdAt',
   order: 'asc' | 'desc' = 'desc',
 ) => {
   const sortOption: Record<string, 1 | -1> = {
     [sort]: order === 'asc' ? 1 : -1,
   };
-  const items = await myVideoModel.find().sort(sortOption).lean();
-  return items.map((item) => ({
-    ...item,
-    _id: item._id.toString(),
-    category: 'my-videos',
-  }));
+
+  const total = await myVideoModel.countDocuments();
+  const totalPages = Math.ceil(total / limit);
+  const skip = (page - 1) * limit;
+
+  const items = await myVideoModel
+    .find()
+    .sort(sortOption)
+    .skip(skip)
+    .limit(limit)
+    .lean();
+  return {
+    success: true,
+    data: {
+      items: items.map((item) => ({
+        ...item,
+        _id: item._id.toString(),
+        category: 'my-videos',
+      })),
+      pagination: {
+        page,
+        limit,
+        total,
+        totalPages,
+      },
+    },
+  };
 };
 
 export const getVideosFromInternet = async (
+  page: number = 1,
+  limit: number = 8,
   sort: string = 'createdAt',
   order: 'asc' | 'desc' = 'desc',
 ) => {
   const sortOption: Record<string, 1 | -1> = {
     [sort]: order === 'asc' ? 1 : -1,
   };
-  const items = await videoFromInternetModel.find().sort(sortOption).lean();
-  return items.map((item) => ({
-    ...item,
-    _id: item._id.toString(),
-    category: 'internet-videos',
-  }));
+
+  const total = await videoFromInternetModel.countDocuments();
+  const totalPages = Math.ceil(total / limit);
+  const skip = (page - 1) * limit;
+
+  const items = await videoFromInternetModel
+    .find()
+    .sort(sortOption)
+    .skip(skip)
+    .limit(limit)
+    .lean();
+  return {
+    success: true,
+    data: {
+      items: items.map((item) => ({
+        ...item,
+        _id: item._id.toString(),
+        category: 'internet-videos',
+      })),
+      pagination: {
+        page,
+        limit,
+        total,
+        totalPages,
+      },
+    },
+  };
 };
 
 export const getMyEquipment = async (
+  page: number = 1,
+  limit: number = 8,
   sort: string = 'createdAt',
   order: 'asc' | 'desc' = 'desc',
 ) => {
   const sortOption: Record<string, 1 | -1> = {
     [sort]: order === 'asc' ? 1 : -1,
   };
-  const items = await myEquipmentModel.find().sort(sortOption).lean();
-  return items.map((item) => ({
-    ...item,
-    _id: item._id.toString(),
-    category: 'my-equipment',
-  }));
+  const total = await myEquipmentModel.countDocuments();
+  const totalPages = Math.ceil(total / limit);
+  const skip = (page - 1) * limit;
+  const items = await myEquipmentModel
+    .find()
+    .sort(sortOption)
+    .skip(skip)
+    .limit(limit)
+    .lean();
+  return {
+    success: true,
+    data: {
+      items: items.map((item) => ({
+        ...item,
+        _id: item._id.toString(),
+        category: 'my-equipment',
+      })),
+      pagination: {
+        page,
+        limit,
+        total,
+        totalPages,
+      },
+    },
+  };
 };
 
 export const getHowToDoIt = async (
+  page: number = 1,
+  limit: number = 8,
   sort: string = 'createdAt',
   order: 'asc' | 'desc' = 'desc',
 ) => {
   const sortOption: Record<string, 1 | -1> = {
     [sort]: order === 'asc' ? 1 : -1,
   };
-  const items = await howToDoItModel.find().sort(sortOption).lean();
-  return items.map((item) => ({
-    ...item,
-    _id: item._id.toString(),
-    category: 'how-to',
-  }));
+  const total = await howToDoItModel.countDocuments();
+  const totalPages = Math.ceil(total / limit);
+  const skip = (page - 1) * limit;
+  const items = await howToDoItModel
+    .find()
+    .sort(sortOption)
+    .skip(skip)
+    .limit(limit)
+    .lean();
+  return {
+    success: true,
+    data: {
+      items: items.map((item) => ({
+        ...item,
+        _id: item._id.toString(),
+        category: 'how-to',
+      })),
+      pagination: {
+        page,
+        limit,
+        total,
+        totalPages,
+      },
+    },
+  };
 };
 
 export const createMyPhoto = (data: Partial<ILoft>) => {
