@@ -19,6 +19,7 @@ export const getMyPhotos = async (
   const sortOption: Record<string, 1 | -1> = {
     [sort]: order === 'asc' ? 1 : -1,
   };
+  console.log('sortOption', sortOption);
   const total = await myPhotoModel.countDocuments();
   const totalPages = Math.ceil(total / limitNum);
   const skip = (pageNum - 1) * limitNum;

@@ -24,8 +24,6 @@ import {
   getLoftItemById,
 } from '../../../db/services/loft.service';
 
-import { ApiResponse } from '../../../helpers/ApiResponse';
-
 import { ILoft } from '../../../db/models/Loft';
 
 @JsonController('/loft')
@@ -41,13 +39,13 @@ export default class LoftController {
     const pageNum = Math.max(parseInt(page, 10) || 1, 1);
     const limitNum = Math.max(parseInt(limit, 10) || 8, 1);
     const result = await getMyPhotos(pageNum, limitNum, sort, order);
-    // const { items, pagination } = result.data;
-    // return new ApiResponse(true, {
-    //   items,
-    //   pagination,
-    //   debug: { pageNum, limitNum, sort, order },
-    // });
-    return new ApiResponse(true, result.data);
+
+    // return new ApiResponse(true, result.data);
+    return {
+      success: true,
+      items: result.data.items,
+      pagination: result.data.pagination,
+    };
   }
 
   @Get('/internet-photos')
@@ -67,7 +65,12 @@ export default class LoftController {
     //   pagination,
     //   debug: { pageNum, limitNum, sort, order },
     // });
-    return new ApiResponse(true, result.data);
+    // return new ApiResponse(true, result.data);
+    return {
+      success: true,
+      items: result.data.items,
+      pagination: result.data.pagination,
+    };
   }
 
   @Get('/my-videos')
@@ -87,7 +90,12 @@ export default class LoftController {
     //   pagination,
     //   debug: { pageNum, limitNum, sort, order },
     // });
-    return new ApiResponse(true, result.data);
+    // return new ApiResponse(true, result.data);
+    return {
+      success: true,
+      items: result.data.items,
+      pagination: result.data.pagination,
+    };
   }
 
   @Get('/internet-videos')
@@ -103,7 +111,12 @@ export default class LoftController {
     const result = await getVideosFromInternet(pageNum, limitNum, sort, order);
     // const { items, pagination } = result.data;
     // return new ApiResponse(true, { items, pagination });
-    return new ApiResponse(true, result.data);
+    // return new ApiResponse(true, result.data);
+    return {
+      success: true,
+      items: result.data.items,
+      pagination: result.data.pagination,
+    };
   }
 
   @Get('/my-equipment')
@@ -119,7 +132,12 @@ export default class LoftController {
     const result = await getMyEquipment(pageNum, limitNum, sort, order);
     // const { items, pagination } = result.data;
     // return new ApiResponse(true, { items, pagination });
-    return new ApiResponse(true, result.data);
+    // return new ApiResponse(true, result.data);
+    return {
+      success: true,
+      items: result.data.items,
+      pagination: result.data.pagination,
+    };
   }
 
   @Get('/how-to')
@@ -135,7 +153,12 @@ export default class LoftController {
     const result = await getHowToDoIt(pageNum, limitNum, sort, order);
     // const { items, pagination } = result.data;
     // return new ApiResponse(true, { items, pagination });
-    return new ApiResponse(true, result.data);
+    // return new ApiResponse(true, result.data);
+    return {
+      success: true,
+      items: result.data.items,
+      pagination: result.data.pagination,
+    };
   }
 
   //--------------post-------------------
