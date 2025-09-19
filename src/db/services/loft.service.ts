@@ -23,6 +23,12 @@ export const getMyPhotos = async (
   const total = await myPhotoModel.countDocuments();
   const totalPages = Math.ceil(total / limitNum);
   const skip = (pageNum - 1) * limitNum;
+  console.error('[DEBUG] Service params:', {
+    pageNum,
+    limitNum,
+    sortOption,
+    skip,
+  });
   const items = await myPhotoModel
     .find()
     .sort(sortOption)
