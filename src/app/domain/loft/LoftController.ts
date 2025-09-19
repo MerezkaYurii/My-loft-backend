@@ -33,72 +33,89 @@ export default class LoftController {
   //--------------get--------------
   @Get('/my-photos')
   async getMyPhotosList(
-    @QueryParam('page') page: number = 1,
-    @QueryParam('limit') limit: number = 8,
+    @QueryParam('page') page: string = '1',
+    @QueryParam('limit') limit: string = '8',
     @QueryParam('sort') sort: string = 'createdAt',
     @QueryParam('order') order: 'asc' | 'desc' = 'desc',
   ) {
-    const result = await getMyPhotos(page, limit, sort, order);
+    const pageNum = Math.max(parseInt(page, 10) || 1, 1);
+    const limitNum = Math.max(parseInt(limit, 10) || 8, 1);
+    const result = await getMyPhotos(pageNum, limitNum, sort, order);
     const { items, pagination } = result.data;
     return new ApiResponse(true, { items, pagination });
   }
 
   @Get('/internet-photos')
   async getPhotosFromInternetList(
-    @QueryParam('page') page: number = 1,
-    @QueryParam('limit') limit: number = 8,
+    @QueryParam('page') page: string = '1',
+    @QueryParam('limit') limit: string = '8',
     @QueryParam('sort') sort: string = 'createdAt',
     @QueryParam('order') order: 'asc' | 'desc' = 'desc',
   ) {
-    const result = await getPhotosFromInternet(page, limit, sort, order);
+    const pageNum = Math.max(parseInt(page, 10) || 1, 1);
+    const limitNum = Math.max(parseInt(limit, 10) || 8, 1);
+
+    const result = await getPhotosFromInternet(pageNum, limitNum, sort, order);
     const { items, pagination } = result.data;
     return new ApiResponse(true, { items, pagination });
   }
 
   @Get('/my-videos')
   async getMyVideosList(
-    @QueryParam('page') page: number = 1,
-    @QueryParam('limit') limit: number = 8,
+    @QueryParam('page') page: string = '1',
+    @QueryParam('limit') limit: string = '8',
     @QueryParam('sort') sort: string = 'createdAt',
     @QueryParam('order') order: 'asc' | 'desc' = 'desc',
   ) {
-    const result = await getMyVideos(page, limit, sort, order);
+    const pageNum = Math.max(parseInt(page, 10) || 1, 1);
+    const limitNum = Math.max(parseInt(limit, 10) || 8, 1);
+
+    const result = await getMyVideos(pageNum, limitNum, sort, order);
     const { items, pagination } = result.data;
     return new ApiResponse(true, { items, pagination });
   }
 
   @Get('/internet-videos')
   async getVideosFromInternetList(
-    @QueryParam('page') page: number = 1,
-    @QueryParam('limit') limit: number = 8,
+    @QueryParam('page') page: string = '1',
+    @QueryParam('limit') limit: string = '8',
     @QueryParam('sort') sort: string = 'createdAt',
     @QueryParam('order') order: 'asc' | 'desc' = 'desc',
   ) {
-    const result = await getVideosFromInternet(page, limit, sort, order);
+    const pageNum = Math.max(parseInt(page, 10) || 1, 1);
+    const limitNum = Math.max(parseInt(limit, 10) || 8, 1);
+
+    const result = await getVideosFromInternet(pageNum, limitNum, sort, order);
     const { items, pagination } = result.data;
     return new ApiResponse(true, { items, pagination });
   }
 
   @Get('/my-equipment')
   async getMyEquipmentList(
-    @QueryParam('page') page: number = 1,
-    @QueryParam('limit') limit: number = 8,
+    @QueryParam('page') page: string = '1',
+    @QueryParam('limit') limit: string = '8',
     @QueryParam('sort') sort: string = 'createdAt',
     @QueryParam('order') order: 'asc' | 'desc' = 'desc',
   ) {
-    const result = await getMyEquipment(page, limit, sort, order);
+    const pageNum = Math.max(parseInt(page, 10) || 1, 1);
+    const limitNum = Math.max(parseInt(limit, 10) || 8, 1);
+
+    const result = await getMyEquipment(pageNum, limitNum, sort, order);
     const { items, pagination } = result.data;
     return new ApiResponse(true, { items, pagination });
   }
 
   @Get('/how-to')
   async getHowToDoItList(
-    @QueryParam('page') page: number = 1,
-    @QueryParam('limit') limit: number = 8,
+    @QueryParam('page') page: string = '1',
+    @QueryParam('limit') limit: string = '8',
     @QueryParam('sort') sort: string = 'createdAt',
     @QueryParam('order') order: 'asc' | 'desc' = 'desc',
   ) {
-    const result = await getHowToDoIt(page, limit, sort, order);
+    const pageNum = Math.max(parseInt(page, 10) || 1, 1);
+    const limitNum = Math.max(parseInt(limit, 10) || 8, 1);
+
+    const result = await getHowToDoIt(pageNum, limitNum, sort, order);
     const { items, pagination } = result.data;
     return new ApiResponse(true, { items, pagination });
   }
