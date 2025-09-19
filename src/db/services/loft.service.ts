@@ -11,8 +11,8 @@ import {
 } from '../../db/models/Loft';
 
 export const getMyPhotos = async (
-  page: number = 1,
-  limit: number = 8,
+  pageNum: number = 1,
+  limitNum: number = 8,
   sort: string = 'createdAt',
   order: 'asc' | 'desc' = 'desc',
 ) => {
@@ -20,13 +20,13 @@ export const getMyPhotos = async (
     [sort]: order === 'asc' ? 1 : -1,
   };
   const total = await myPhotoModel.countDocuments();
-  const totalPages = Math.ceil(total / limit);
-  const skip = (page - 1) * limit;
+  const totalPages = Math.ceil(total / limitNum);
+  const skip = (pageNum - 1) * limitNum;
   const items = await myPhotoModel
     .find()
     .sort(sortOption)
     .skip(skip)
-    .limit(limit)
+    .limit(limitNum)
     .lean();
 
   return {
@@ -38,8 +38,8 @@ export const getMyPhotos = async (
         category: 'my-photos',
       })),
       pagination: {
-        page,
-        limit,
+        page: pageNum,
+        limit: limitNum,
         total,
         totalPages,
       },
@@ -48,8 +48,8 @@ export const getMyPhotos = async (
 };
 
 export const getPhotosFromInternet = async (
-  page: number = 1,
-  limit: number = 8,
+  pageNum: number = 1,
+  limitNum: number = 8,
   sort: string = 'createdAt',
   order: 'asc' | 'desc' = 'desc',
 ) => {
@@ -57,13 +57,13 @@ export const getPhotosFromInternet = async (
     [sort]: order === 'asc' ? 1 : -1,
   };
   const total = await photoFromInternetModel.countDocuments();
-  const totalPages = Math.ceil(total / limit);
-  const skip = (page - 1) * limit;
+  const totalPages = Math.ceil(total / limitNum);
+  const skip = (pageNum - 1) * limitNum;
   const items = await photoFromInternetModel
     .find()
     .sort(sortOption)
     .skip(skip)
-    .limit(limit)
+    .limit(limitNum)
     .lean();
   return {
     success: true,
@@ -74,8 +74,8 @@ export const getPhotosFromInternet = async (
         category: 'internet-photos',
       })),
       pagination: {
-        page,
-        limit,
+        page: pageNum,
+        limit: limitNum,
         total,
         totalPages,
       },
@@ -84,8 +84,8 @@ export const getPhotosFromInternet = async (
 };
 
 export const getMyVideos = async (
-  page: number = 1,
-  limit: number = 8,
+  pageNum: number = 1,
+  limitNum: number = 8,
   sort: string = 'createdAt',
   order: 'asc' | 'desc' = 'desc',
 ) => {
@@ -94,14 +94,14 @@ export const getMyVideos = async (
   };
 
   const total = await myVideoModel.countDocuments();
-  const totalPages = Math.ceil(total / limit);
-  const skip = (page - 1) * limit;
+  const totalPages = Math.ceil(total / limitNum);
+  const skip = (pageNum - 1) * limitNum;
 
   const items = await myVideoModel
     .find()
     .sort(sortOption)
     .skip(skip)
-    .limit(limit)
+    .limit(limitNum)
     .lean();
   return {
     success: true,
@@ -112,8 +112,8 @@ export const getMyVideos = async (
         category: 'my-videos',
       })),
       pagination: {
-        page,
-        limit,
+        page: pageNum,
+        limit: limitNum,
         total,
         totalPages,
       },
@@ -122,8 +122,8 @@ export const getMyVideos = async (
 };
 
 export const getVideosFromInternet = async (
-  page: number = 1,
-  limit: number = 8,
+  pageNum: number = 1,
+  limitNum: number = 8,
   sort: string = 'createdAt',
   order: 'asc' | 'desc' = 'desc',
 ) => {
@@ -132,14 +132,14 @@ export const getVideosFromInternet = async (
   };
 
   const total = await videoFromInternetModel.countDocuments();
-  const totalPages = Math.ceil(total / limit);
-  const skip = (page - 1) * limit;
+  const totalPages = Math.ceil(total / limitNum);
+  const skip = (pageNum - 1) * limitNum;
 
   const items = await videoFromInternetModel
     .find()
     .sort(sortOption)
     .skip(skip)
-    .limit(limit)
+    .limit(limitNum)
     .lean();
   return {
     success: true,
@@ -150,8 +150,8 @@ export const getVideosFromInternet = async (
         category: 'internet-videos',
       })),
       pagination: {
-        page,
-        limit,
+        page: pageNum,
+        limit: limitNum,
         total,
         totalPages,
       },
@@ -160,8 +160,8 @@ export const getVideosFromInternet = async (
 };
 
 export const getMyEquipment = async (
-  page: number = 1,
-  limit: number = 8,
+  pageNum: number = 1,
+  limitNum: number = 8,
   sort: string = 'createdAt',
   order: 'asc' | 'desc' = 'desc',
 ) => {
@@ -169,13 +169,13 @@ export const getMyEquipment = async (
     [sort]: order === 'asc' ? 1 : -1,
   };
   const total = await myEquipmentModel.countDocuments();
-  const totalPages = Math.ceil(total / limit);
-  const skip = (page - 1) * limit;
+  const totalPages = Math.ceil(total / limitNum);
+  const skip = (pageNum - 1) * limitNum;
   const items = await myEquipmentModel
     .find()
     .sort(sortOption)
     .skip(skip)
-    .limit(limit)
+    .limit(limitNum)
     .lean();
   return {
     success: true,
@@ -186,8 +186,8 @@ export const getMyEquipment = async (
         category: 'my-equipment',
       })),
       pagination: {
-        page,
-        limit,
+        page: pageNum,
+        limit: limitNum,
         total,
         totalPages,
       },
@@ -196,8 +196,8 @@ export const getMyEquipment = async (
 };
 
 export const getHowToDoIt = async (
-  page: number = 1,
-  limit: number = 8,
+  pageNum: number = 1,
+  limitNum: number = 8,
   sort: string = 'createdAt',
   order: 'asc' | 'desc' = 'desc',
 ) => {
@@ -205,13 +205,13 @@ export const getHowToDoIt = async (
     [sort]: order === 'asc' ? 1 : -1,
   };
   const total = await howToDoItModel.countDocuments();
-  const totalPages = Math.ceil(total / limit);
-  const skip = (page - 1) * limit;
+  const totalPages = Math.ceil(total / limitNum);
+  const skip = (pageNum - 1) * limitNum;
   const items = await howToDoItModel
     .find()
     .sort(sortOption)
     .skip(skip)
-    .limit(limit)
+    .limit(limitNum)
     .lean();
   return {
     success: true,
@@ -222,8 +222,8 @@ export const getHowToDoIt = async (
         category: 'how-to',
       })),
       pagination: {
-        page,
-        limit,
+        page: pageNum,
+        limit: limitNum,
         total,
         totalPages,
       },
