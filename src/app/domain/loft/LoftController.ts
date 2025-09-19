@@ -42,11 +42,18 @@ export default class LoftController {
     const sortField = sort || 'createdAt';
     const sortOrder = order === 'asc' ? 'asc' : 'desc';
 
+    console.error(
+      `[DEBUG] Controller params - page: ${pageNum}, limit: ${limitNum}, sort: ${sort}, order: ${order}`,
+    );
     logger.debug(
       `Controller params: pageNum=${pageNum}, limitNum=${limitNum}, sortField=${sortField}, sortOrder=${sortOrder}`,
     );
 
     const result = await getMyPhotos(pageNum, limitNum, sort, order);
+
+    console.error(
+      `[DEBUG] Fetched data - total: ${result.data.pagination.total}, totalPages: ${result.data.pagination.totalPages}, items: ${result.data.items.length}`,
+    );
     logger.debug(
       `Fetched data: total=${result.data.pagination.total}, totalPages=${result.data.pagination.totalPages}, itemsLength=${result.data.items.length}`,
     );
