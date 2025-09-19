@@ -38,6 +38,15 @@ export const getMyPhotos = async (
 
   return {
     success: true,
+    debug: {
+      pageNum,
+      limitNum,
+      sortOption,
+      skip,
+      total,
+      totalPages,
+      countItemsReturned: items.length,
+    },
     data: {
       items: items.map((item) => ({
         ...item,
