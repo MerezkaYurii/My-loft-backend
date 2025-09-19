@@ -19,16 +19,11 @@ export const getMyPhotos = async (
   const sortOption: Record<string, 1 | -1> = {
     [sort]: order === 'asc' ? 1 : -1,
   };
-  console.log('sortOption', sortOption);
+
   const total = await myPhotoModel.countDocuments();
   const totalPages = Math.ceil(total / limitNum);
   const skip = (pageNum - 1) * limitNum;
-  console.error('[DEBUG] Service params:', {
-    pageNum,
-    limitNum,
-    sortOption,
-    skip,
-  });
+
   const items = await myPhotoModel
     .find()
     .sort(sortOption)
@@ -38,15 +33,6 @@ export const getMyPhotos = async (
 
   return {
     success: true,
-    debug: {
-      pageNum,
-      limitNum,
-      sortOption,
-      skip,
-      total,
-      totalPages,
-      countItemsReturned: items.length,
-    },
     data: {
       items: items.map((item) => ({
         ...item,
