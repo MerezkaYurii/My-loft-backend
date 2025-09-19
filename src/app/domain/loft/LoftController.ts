@@ -38,6 +38,8 @@ export default class LoftController {
     @QueryParam('sort') sort: string = 'createdAt',
     @QueryParam('order') order: 'asc' | 'desc' = 'desc',
   ) {
+    console.log({ page, limit, sort, order });
+
     const pageNum = Math.max(parseInt(page, 10) || 1, 1);
     const limitNum = Math.max(parseInt(limit, 10) || 8, 1);
     const result = await getMyPhotos(pageNum, limitNum, sort, order);
@@ -52,6 +54,8 @@ export default class LoftController {
     @QueryParam('sort') sort: string = 'createdAt',
     @QueryParam('order') order: 'asc' | 'desc' = 'desc',
   ) {
+    console.log({ page, limit, sort, order });
+
     const pageNum = Math.max(parseInt(page, 10) || 1, 1);
     const limitNum = Math.max(parseInt(limit, 10) || 8, 1);
 
@@ -67,6 +71,8 @@ export default class LoftController {
     @QueryParam('sort') sort: string = 'createdAt',
     @QueryParam('order') order: 'asc' | 'desc' = 'desc',
   ) {
+    console.log({ page, limit, sort, order });
+
     const pageNum = Math.max(parseInt(page, 10) || 1, 1);
     const limitNum = Math.max(parseInt(limit, 10) || 8, 1);
 
