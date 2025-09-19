@@ -38,13 +38,15 @@ export default class LoftController {
     @QueryParam('sort') sort: string = 'createdAt',
     @QueryParam('order') order: 'asc' | 'desc' = 'desc',
   ) {
-    console.log({ page, limit, sort, order });
-
     const pageNum = Math.max(parseInt(page, 10) || 1, 1);
     const limitNum = Math.max(parseInt(limit, 10) || 8, 1);
     const result = await getMyPhotos(pageNum, limitNum, sort, order);
     const { items, pagination } = result.data;
-    return new ApiResponse(true, { items, pagination });
+    return new ApiResponse(true, {
+      items,
+      pagination,
+      debug: { pageNum, limitNum, sort, order },
+    });
   }
 
   @Get('/internet-photos')
@@ -54,14 +56,16 @@ export default class LoftController {
     @QueryParam('sort') sort: string = 'createdAt',
     @QueryParam('order') order: 'asc' | 'desc' = 'desc',
   ) {
-    console.log({ page, limit, sort, order });
-
     const pageNum = Math.max(parseInt(page, 10) || 1, 1);
     const limitNum = Math.max(parseInt(limit, 10) || 8, 1);
 
     const result = await getPhotosFromInternet(pageNum, limitNum, sort, order);
     const { items, pagination } = result.data;
-    return new ApiResponse(true, { items, pagination });
+    return new ApiResponse(true, {
+      items,
+      pagination,
+      debug: { pageNum, limitNum, sort, order },
+    });
   }
 
   @Get('/my-videos')
@@ -71,14 +75,16 @@ export default class LoftController {
     @QueryParam('sort') sort: string = 'createdAt',
     @QueryParam('order') order: 'asc' | 'desc' = 'desc',
   ) {
-    console.log({ page, limit, sort, order });
-
     const pageNum = Math.max(parseInt(page, 10) || 1, 1);
     const limitNum = Math.max(parseInt(limit, 10) || 8, 1);
 
     const result = await getMyVideos(pageNum, limitNum, sort, order);
     const { items, pagination } = result.data;
-    return new ApiResponse(true, { items, pagination });
+    return new ApiResponse(true, {
+      items,
+      pagination,
+      debug: { pageNum, limitNum, sort, order },
+    });
   }
 
   @Get('/internet-videos')
