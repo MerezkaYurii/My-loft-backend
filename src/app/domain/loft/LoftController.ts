@@ -41,12 +41,13 @@ export default class LoftController {
     const pageNum = Math.max(parseInt(page, 10) || 1, 1);
     const limitNum = Math.max(parseInt(limit, 10) || 8, 1);
     const result = await getMyPhotos(pageNum, limitNum, sort, order);
-    const { items, pagination } = result.data;
-    return new ApiResponse(true, {
-      items,
-      pagination,
-      debug: { pageNum, limitNum, sort, order },
-    });
+    // const { items, pagination } = result.data;
+    // return new ApiResponse(true, {
+    //   items,
+    //   pagination,
+    //   debug: { pageNum, limitNum, sort, order },
+    // });
+    return new ApiResponse(true, result.data);
   }
 
   @Get('/internet-photos')
@@ -60,12 +61,13 @@ export default class LoftController {
     const limitNum = Math.max(parseInt(limit, 10) || 8, 1);
 
     const result = await getPhotosFromInternet(pageNum, limitNum, sort, order);
-    const { items, pagination } = result.data;
-    return new ApiResponse(true, {
-      items,
-      pagination,
-      debug: { pageNum, limitNum, sort, order },
-    });
+    // const { items, pagination } = result.data;
+    // return new ApiResponse(true, {
+    //   items,
+    //   pagination,
+    //   debug: { pageNum, limitNum, sort, order },
+    // });
+    return new ApiResponse(true, result.data);
   }
 
   @Get('/my-videos')
@@ -79,12 +81,13 @@ export default class LoftController {
     const limitNum = Math.max(parseInt(limit, 10) || 8, 1);
 
     const result = await getMyVideos(pageNum, limitNum, sort, order);
-    const { items, pagination } = result.data;
-    return new ApiResponse(true, {
-      items,
-      pagination,
-      debug: { pageNum, limitNum, sort, order },
-    });
+    // const { items, pagination } = result.data;
+    // return new ApiResponse(true, {
+    //   items,
+    //   pagination,
+    //   debug: { pageNum, limitNum, sort, order },
+    // });
+    return new ApiResponse(true, result.data);
   }
 
   @Get('/internet-videos')
@@ -98,8 +101,9 @@ export default class LoftController {
     const limitNum = Math.max(parseInt(limit, 10) || 8, 1);
 
     const result = await getVideosFromInternet(pageNum, limitNum, sort, order);
-    const { items, pagination } = result.data;
-    return new ApiResponse(true, { items, pagination });
+    // const { items, pagination } = result.data;
+    // return new ApiResponse(true, { items, pagination });
+    return new ApiResponse(true, result.data);
   }
 
   @Get('/my-equipment')
@@ -113,8 +117,9 @@ export default class LoftController {
     const limitNum = Math.max(parseInt(limit, 10) || 8, 1);
 
     const result = await getMyEquipment(pageNum, limitNum, sort, order);
-    const { items, pagination } = result.data;
-    return new ApiResponse(true, { items, pagination });
+    // const { items, pagination } = result.data;
+    // return new ApiResponse(true, { items, pagination });
+    return new ApiResponse(true, result.data);
   }
 
   @Get('/how-to')
@@ -128,8 +133,9 @@ export default class LoftController {
     const limitNum = Math.max(parseInt(limit, 10) || 8, 1);
 
     const result = await getHowToDoIt(pageNum, limitNum, sort, order);
-    const { items, pagination } = result.data;
-    return new ApiResponse(true, { items, pagination });
+    // const { items, pagination } = result.data;
+    // return new ApiResponse(true, { items, pagination });
+    return new ApiResponse(true, result.data);
   }
 
   //--------------post-------------------
