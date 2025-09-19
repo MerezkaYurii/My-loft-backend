@@ -51,8 +51,9 @@ export default class LoftController {
     // return new ApiResponse(true, result.data);
     return {
       success: true,
-      items: result.data.items,
-      pagination: result.data.pagination,
+      ...result.data,
+      // items: result.data.items,
+      // pagination: result.data.pagination,
     };
   }
 
