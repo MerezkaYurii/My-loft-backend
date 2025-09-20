@@ -23,9 +23,8 @@ import {
   createHowToDoIt,
   getLoftItemById,
 } from '../../../db/services/loft.service';
-
 import { ILoft } from '../../../db/models/Loft';
-import logger from 'helpers/logger';
+import { parsePaginationParams } from 'utils/parsePaginationParams';
 
 @JsonController('/loft')
 export default class LoftController {
@@ -37,33 +36,10 @@ export default class LoftController {
     @QueryParam('sort') sort: string = 'createdAt',
     @QueryParam('order') order: 'asc' | 'desc' = 'desc',
   ) {
-    const pageNum = Math.max(parseInt(page?.trim() || '1', 10), 1);
-    const limitNum = Math.max(parseInt(limit?.trim() || '8', 10), 1);
-    const sortField = sort || 'createdAt';
-    const sortOrder = order === 'asc' ? 'asc' : 'desc';
-
-    console.error(
-      `[DEBUG] Controller params - page: ${pageNum}, limit: ${limitNum}, sort: ${sort}, order: ${order}`,
-    );
-    logger.debug(
-      `Controller params: pageNum=${pageNum}, limitNum=${limitNum}, sortField=${sortField}, sortOrder=${sortOrder}`,
-    );
+    const { pageNum, limitNum } = parsePaginationParams({ page, limit });
 
     const result = await getMyPhotos(pageNum, limitNum, sort, order);
-
-    console.error(
-      `[DEBUG] Fetched data - total: ${result.data.pagination.total}, totalPages: ${result.data.pagination.totalPages}, items: ${result.data.items.length}`,
-    );
-    logger.debug(
-      `Fetched data: total=${result.data.pagination.total}, totalPages=${result.data.pagination.totalPages}, itemsLength=${result.data.items.length}`,
-    );
-
-    // return new ApiResponse(true, result.data);
-    return {
-      success: true,
-      items: result.data.items,
-      pagination: result.data.pagination,
-    };
+    return result;
   }
 
   @Get('/internet-photos')
@@ -73,16 +49,11 @@ export default class LoftController {
     @QueryParam('sort') sort: string = 'createdAt',
     @QueryParam('order') order: 'asc' | 'desc' = 'desc',
   ) {
-    const pageNum = Math.max(parseInt(page?.trim() || '1', 10), 1);
-    const limitNum = Math.max(parseInt(limit?.trim() || '8', 10), 1);
+    const { pageNum, limitNum } = parsePaginationParams({ page, limit });
 
     const result = await getPhotosFromInternet(pageNum, limitNum, sort, order);
 
-    return {
-      success: true,
-      items: result.data.items,
-      pagination: result.data.pagination,
-    };
+    return result;
   }
 
   @Get('/my-videos')
@@ -92,22 +63,11 @@ export default class LoftController {
     @QueryParam('sort') sort: string = 'createdAt',
     @QueryParam('order') order: 'asc' | 'desc' = 'desc',
   ) {
-    const pageNum = Math.max(parseInt(page?.trim() || '1', 10), 1);
-    const limitNum = Math.max(parseInt(limit?.trim() || '8', 10), 1);
+    const { pageNum, limitNum } = parsePaginationParams({ page, limit });
 
     const result = await getMyVideos(pageNum, limitNum, sort, order);
-    // const { items, pagination } = result.data;
-    // return new ApiResponse(true, {
-    //   items,
-    //   pagination,
-    //   debug: { pageNum, limitNum, sort, order },
-    // });
-    // return new ApiResponse(true, result.data);
-    return {
-      success: true,
-      items: result.data.items,
-      pagination: result.data.pagination,
-    };
+
+    return result;
   }
 
   @Get('/internet-videos')
@@ -117,18 +77,9 @@ export default class LoftController {
     @QueryParam('sort') sort: string = 'createdAt',
     @QueryParam('order') order: 'asc' | 'desc' = 'desc',
   ) {
-    const pageNum = Math.max(parseInt(page?.trim() || '1', 10), 1);
-    const limitNum = Math.max(parseInt(limit?.trim() || '8', 10), 1);
-
+    const { pageNum, limitNum } = parsePaginationParams({ page, limit });
     const result = await getVideosFromInternet(pageNum, limitNum, sort, order);
-    // const { items, pagination } = result.data;
-    // return new ApiResponse(true, { items, pagination });
-    // return new ApiResponse(true, result.data);
-    return {
-      success: true,
-      items: result.data.items,
-      pagination: result.data.pagination,
-    };
+    return result;
   }
 
   @Get('/my-equipment')
@@ -138,18 +89,11 @@ export default class LoftController {
     @QueryParam('sort') sort: string = 'createdAt',
     @QueryParam('order') order: 'asc' | 'desc' = 'desc',
   ) {
-    const pageNum = Math.max(parseInt(page?.trim() || '1', 10), 1);
-    const limitNum = Math.max(parseInt(limit?.trim() || '8', 10), 1);
+    const { pageNum, limitNum } = parsePaginationParams({ page, limit });
 
     const result = await getMyEquipment(pageNum, limitNum, sort, order);
-    // const { items, pagination } = result.data;
-    // return new ApiResponse(true, { items, pagination });
-    // return new ApiResponse(true, result.data);
-    return {
-      success: true,
-      items: result.data.items,
-      pagination: result.data.pagination,
-    };
+
+    return result;
   }
 
   @Get('/how-to')
@@ -159,18 +103,11 @@ export default class LoftController {
     @QueryParam('sort') sort: string = 'createdAt',
     @QueryParam('order') order: 'asc' | 'desc' = 'desc',
   ) {
-    const pageNum = Math.max(parseInt(page?.trim() || '1', 10), 1);
-    const limitNum = Math.max(parseInt(limit?.trim() || '8', 10), 1);
+    const { pageNum, limitNum } = parsePaginationParams({ page, limit });
 
     const result = await getHowToDoIt(pageNum, limitNum, sort, order);
-    // const { items, pagination } = result.data;
-    // return new ApiResponse(true, { items, pagination });
-    // return new ApiResponse(true, result.data);
-    return {
-      success: true,
-      items: result.data.items,
-      pagination: result.data.pagination,
-    };
+
+    return result;
   }
 
   //--------------post-------------------
