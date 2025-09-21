@@ -36,7 +36,12 @@ export default class LoftController {
     @QueryParam('sort') sort: string = 'createdAt',
     @QueryParam('order') order: 'asc' | 'desc' = 'desc',
   ) {
-    const { pageNum, limitNum } = parsePaginationParams({ page, limit });
+    // const { pageNum, limitNum } = parsePaginationParams({ page, limit });
+
+    const pageNum = Math.max(parseInt(page?.trim() || '1', 10), 1);
+    const limitNum = Math.max(parseInt(limit?.trim() || '8', 10), 1);
+    const sortField = sort || 'createdAt';
+    const sortOrder = order === 'asc' ? 'asc' : 'desc';
 
     const result = await getMyPhotos(pageNum, limitNum, sort, order);
     return JSON.parse(
@@ -44,7 +49,14 @@ export default class LoftController {
         success: true,
         items: result.items,
         pagination: result.pagination,
-        debug: { page, limit, pageNum, limitNum, sort, order },
+        debug: {
+          page,
+          limit,
+          pageNum,
+          limitNum,
+          sort: sortField,
+          order: sortOrder,
+        },
       }),
     );
   }
