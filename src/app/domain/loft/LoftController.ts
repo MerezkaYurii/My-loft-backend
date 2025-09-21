@@ -36,8 +36,6 @@ export default class LoftController {
     @QueryParam('sort') sort: string = 'createdAt',
     @QueryParam('order') order: 'asc' | 'desc' = 'desc',
   ) {
-    // const { pageNum, limitNum } = parsePaginationParams({ page, limit });
-
     const pageNum = Math.max(parseInt(page?.trim() || '1', 10), 1);
     const limitNum = Math.max(parseInt(limit?.trim() || '8', 10), 1);
 
@@ -49,9 +47,10 @@ export default class LoftController {
     );
     return {
       success: true,
-
-      items,
-      pagination,
+      result: {
+        items,
+        pagination,
+      },
     };
   }
 
