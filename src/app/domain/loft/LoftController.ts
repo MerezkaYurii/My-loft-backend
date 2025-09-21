@@ -52,7 +52,6 @@ export default class LoftController {
     return {
       success: true,
       data: {
-        items,
         pagination,
       },
       debug: {
