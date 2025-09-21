@@ -25,6 +25,7 @@ import {
 } from '../../../db/services/loft.service';
 import { ILoft } from '../../../db/models/Loft';
 import { parsePaginationParams } from 'utils/parsePaginationParams';
+import { classToPlain } from 'class-transformer';
 
 @JsonController('/loft')
 export default class LoftController {
@@ -43,22 +44,25 @@ export default class LoftController {
     const sortField = sort || 'createdAt';
     const sortOrder = order === 'asc' ? 'asc' : 'desc';
 
-    const result = await getMyPhotos(pageNum, limitNum, sort, order);
-    return JSON.parse(
-      JSON.stringify({
-        success: true,
-        items: result.items,
-        pagination: result.pagination,
-        debug: {
-          page,
-          limit,
-          pageNum,
-          limitNum,
-          sort: sortField,
-          order: sortOrder,
-        },
-      }),
+    const { items, pagination } = await getMyPhotos(
+      pageNum,
+      limitNum,
+      sort,
+      order,
     );
+    return {
+      success: true,
+      items,
+      pagination,
+      debug: {
+        page,
+        limit,
+        pageNum,
+        limitNum,
+        sort: sortField,
+        order: sortOrder,
+      },
+    };
   }
 
   @Get('/internet-photos')
