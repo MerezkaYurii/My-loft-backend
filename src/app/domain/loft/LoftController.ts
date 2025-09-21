@@ -25,7 +25,6 @@ import {
 } from '../../../db/services/loft.service';
 import { ILoft } from '../../../db/models/Loft';
 import { parsePaginationParams } from 'utils/parsePaginationParams';
-import { classToPlain } from 'class-transformer';
 
 @JsonController('/loft')
 export default class LoftController {
@@ -52,8 +51,10 @@ export default class LoftController {
     );
     return {
       success: true,
-      items,
-      pagination,
+      data: {
+        items,
+        pagination,
+      },
       debug: {
         page,
         limit,
