@@ -48,7 +48,7 @@ export class Tcp implements IService {
     useExpressServer(server, {
       routePrefix,
       controllers,
-      middlewares,
+      middlewares: [],
       cors: true,
       defaultErrorHandler: false,
       validation: false, // Відключаємо вбудовану валідацію, щоб ми могли перевірити DTO самі всередині контролера

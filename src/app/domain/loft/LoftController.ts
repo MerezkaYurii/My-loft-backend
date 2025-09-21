@@ -40,8 +40,6 @@ export default class LoftController {
 
     const pageNum = Math.max(parseInt(page?.trim() || '1', 10), 1);
     const limitNum = Math.max(parseInt(limit?.trim() || '8', 10), 1);
-    const sortField = sort || 'createdAt';
-    const sortOrder = order === 'asc' ? 'asc' : 'desc';
 
     const { items, pagination } = await getMyPhotos(
       pageNum,
@@ -51,17 +49,9 @@ export default class LoftController {
     );
     return {
       success: true,
-      data: {
-        pagination,
-      },
-      debug: {
-        page,
-        limit,
-        pageNum,
-        limitNum,
-        sort: sortField,
-        order: sortOrder,
-      },
+
+      items,
+      pagination,
     };
   }
 
