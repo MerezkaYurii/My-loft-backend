@@ -31,21 +31,24 @@ export default class LoftController {
   //--------------get--------------
   @Get('/my-photos')
   async getMyPhotosList(
-    @QueryParam('page') page?: string,
-    @QueryParam('limit') limit?: string,
+    @QueryParam('page') page: string = '1',
+    @QueryParam('limit') limit: string = '8',
     @QueryParam('sort') sort: string = 'createdAt',
     @QueryParam('order') order: 'asc' | 'desc' = 'desc',
   ) {
     const { pageNum, limitNum } = parsePaginationParams({ page, limit });
 
     const result = await getMyPhotos(pageNum, limitNum, sort, order);
-    return {
-      success: result.success,
-      items: result.data.items,
-      pagination: result.data.pagination,
-      debug: { page, limit, pageNum, limitNum, sort, order },
-    };
+    return JSON.parse(
+      JSON.stringify({
+        success: true,
+        items: result.items,
+        pagination: result.pagination,
+        debug: { page, limit, pageNum, limitNum, sort, order },
+      }),
+    );
   }
+
   @Get('/internet-photos')
   async getPhotosFromInternetList(
     @QueryParam('page') page: string = '1',
