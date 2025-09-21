@@ -11,8 +11,8 @@ import {
 } from '../../db/models/Loft';
 
 export const getMyPhotos = async (
-  page: number = 1,
-  limit: number = 8,
+  pageNum: number = 1,
+  limitNum: number = 8,
   sort: string = 'createdAt',
   order: 'asc' | 'desc' = 'desc',
 ) => {
@@ -21,14 +21,14 @@ export const getMyPhotos = async (
   };
 
   const total = await myPhotoModel.countDocuments();
-  const totalPages = Math.ceil(total / limit);
-  const skip = (page - 1) * limit;
+  const totalPages = Math.ceil(total / limitNum);
+  const skip = (pageNum - 1) * limitNum;
 
   const items = await myPhotoModel
     .find()
     .sort(sortOption)
     .skip(skip)
-    .limit(limit)
+    .limit(limitNum)
     .lean();
 
   return {
@@ -40,8 +40,8 @@ export const getMyPhotos = async (
         category: 'my-photos',
       })),
       pagination: {
-        page,
-        limit,
+        page: pageNum,
+        limit: limitNum,
         total,
         totalPages,
       },
