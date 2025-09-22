@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.initMongoConnection = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
-// import { getEnvVar } from 'utils/getEnvVar';
+// import { getEnvVar } from '../utils/getEnvVar';
 const getEnvVar_1 = require("../utils/getEnvVar");
 const initMongoConnection = async () => {
     try {
@@ -14,6 +14,7 @@ const initMongoConnection = async () => {
         const url = (0, getEnvVar_1.getEnvVar)('MONGODB_URL');
         const name = (0, getEnvVar_1.getEnvVar)('MONGODB_DB');
         await mongoose_1.default.connect(`mongodb+srv://${user}:${password}@${url}/${name}?retryWrites=true&w=majority&appName=Cluster0`);
+        console.log(`🟢 Connected to MongoDB database: ${name} at cluster: ${url}`);
         console.log('Succesfulli connection to database');
     }
     catch (error) {

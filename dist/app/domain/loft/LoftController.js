@@ -13,49 +13,41 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const routing_controllers_1 = require("routing-controllers");
-// import {
-//   getMyPhotos,
-//   getPhotosFromInternet,
-//   getMyVideos,
-//   getVideosFromInternet,
-//   getMyEquipment,
-//   getHowToDoIt,
-//   createMyPhoto,
-//   createPhotosFromInternet,
-//   createMyVideos,
-//   createVideosFromInternet,
-//   createMyEquipment,
-//   createHowToDoIt,
-//   getLoftItemById,
-// } from 'db/services/loft.service';
 const loft_service_1 = require("../../../db/services/loft.service");
-// import { ApiResponse } from 'helpers/ApiResponse';
-const ApiResponse_1 = require("../../../helpers/ApiResponse");
+const parsePaginationParams_1 = require("../../../utils/parsePaginationParams");
 let LoftController = class LoftController {
-    async getMyPhotosList() {
-        const data = await (0, loft_service_1.getMyPhotos)();
-        return new ApiResponse_1.ApiResponse(true, data);
+    //--------------get--------------
+    async getMyPhotosList(page = '1', limit = '8', sort = 'createdAt', order = 'desc') {
+        const { pageNum, limitNum } = (0, parsePaginationParams_1.parsePaginationParams)({ page, limit });
+        const result = await (0, loft_service_1.getMyPhotos)(pageNum, limitNum, sort, order);
+        return result;
     }
-    async getPhotosFromInternetList() {
-        const data = await (0, loft_service_1.getPhotosFromInternet)();
-        return new ApiResponse_1.ApiResponse(true, data);
+    async getPhotosFromInternetList(page = '1', limit = '8', sort = 'createdAt', order = 'desc') {
+        const { pageNum, limitNum } = (0, parsePaginationParams_1.parsePaginationParams)({ page, limit });
+        const result = await (0, loft_service_1.getPhotosFromInternet)(pageNum, limitNum, sort, order);
+        return result;
     }
-    async getMyVideosList() {
-        const data = await (0, loft_service_1.getMyVideos)();
-        return new ApiResponse_1.ApiResponse(true, data);
+    async getMyVideosList(page = '1', limit = '8', sort = 'createdAt', order = 'desc') {
+        const { pageNum, limitNum } = (0, parsePaginationParams_1.parsePaginationParams)({ page, limit });
+        const result = await (0, loft_service_1.getMyVideos)(pageNum, limitNum, sort, order);
+        return result;
     }
-    async getVideosFromInternetList() {
-        const data = await (0, loft_service_1.getVideosFromInternet)();
-        return new ApiResponse_1.ApiResponse(true, data);
+    async getVideosFromInternetList(page = '1', limit = '8', sort = 'createdAt', order = 'desc') {
+        const { pageNum, limitNum } = (0, parsePaginationParams_1.parsePaginationParams)({ page, limit });
+        const result = await (0, loft_service_1.getVideosFromInternet)(pageNum, limitNum, sort, order);
+        return result;
     }
-    async getMyEquipmentList() {
-        const data = await (0, loft_service_1.getMyEquipment)();
-        return new ApiResponse_1.ApiResponse(true, data);
+    async getMyEquipmentList(page = '1', limit = '8', sort = 'createdAt', order = 'desc') {
+        const { pageNum, limitNum } = (0, parsePaginationParams_1.parsePaginationParams)({ page, limit });
+        const result = await (0, loft_service_1.getMyEquipment)(pageNum, limitNum, sort, order);
+        return result;
     }
-    async getHowToDoItList() {
-        const data = await (0, loft_service_1.getHowToDoIt)();
-        return new ApiResponse_1.ApiResponse(true, data);
+    async getHowToDoItList(page = '1', limit = '8', sort = 'createdAt', order = 'desc') {
+        const { pageNum, limitNum } = (0, parsePaginationParams_1.parsePaginationParams)({ page, limit });
+        const result = await (0, loft_service_1.getHowToDoIt)(pageNum, limitNum, sort, order);
+        return result;
     }
+    //--------------post-------------------
     async createMyPhoto(body) {
         const created = await (0, loft_service_1.createMyPhoto)(body);
         return { success: true, data: created.toObject() };
@@ -95,38 +87,62 @@ let LoftController = class LoftController {
 };
 __decorate([
     (0, routing_controllers_1.Get)('/my-photos'),
+    __param(0, (0, routing_controllers_1.QueryParam)('page')),
+    __param(1, (0, routing_controllers_1.QueryParam)('limit')),
+    __param(2, (0, routing_controllers_1.QueryParam)('sort')),
+    __param(3, (0, routing_controllers_1.QueryParam)('order')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String, String, String, String]),
     __metadata("design:returntype", Promise)
 ], LoftController.prototype, "getMyPhotosList", null);
 __decorate([
     (0, routing_controllers_1.Get)('/internet-photos'),
+    __param(0, (0, routing_controllers_1.QueryParam)('page')),
+    __param(1, (0, routing_controllers_1.QueryParam)('limit')),
+    __param(2, (0, routing_controllers_1.QueryParam)('sort')),
+    __param(3, (0, routing_controllers_1.QueryParam)('order')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String, String, String, String]),
     __metadata("design:returntype", Promise)
 ], LoftController.prototype, "getPhotosFromInternetList", null);
 __decorate([
     (0, routing_controllers_1.Get)('/my-videos'),
+    __param(0, (0, routing_controllers_1.QueryParam)('page')),
+    __param(1, (0, routing_controllers_1.QueryParam)('limit')),
+    __param(2, (0, routing_controllers_1.QueryParam)('sort')),
+    __param(3, (0, routing_controllers_1.QueryParam)('order')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String, String, String, String]),
     __metadata("design:returntype", Promise)
 ], LoftController.prototype, "getMyVideosList", null);
 __decorate([
     (0, routing_controllers_1.Get)('/internet-videos'),
+    __param(0, (0, routing_controllers_1.QueryParam)('page')),
+    __param(1, (0, routing_controllers_1.QueryParam)('limit')),
+    __param(2, (0, routing_controllers_1.QueryParam)('sort')),
+    __param(3, (0, routing_controllers_1.QueryParam)('order')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String, String, String, String]),
     __metadata("design:returntype", Promise)
 ], LoftController.prototype, "getVideosFromInternetList", null);
 __decorate([
     (0, routing_controllers_1.Get)('/my-equipment'),
+    __param(0, (0, routing_controllers_1.QueryParam)('page')),
+    __param(1, (0, routing_controllers_1.QueryParam)('limit')),
+    __param(2, (0, routing_controllers_1.QueryParam)('sort')),
+    __param(3, (0, routing_controllers_1.QueryParam)('order')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String, String, String, String]),
     __metadata("design:returntype", Promise)
 ], LoftController.prototype, "getMyEquipmentList", null);
 __decorate([
     (0, routing_controllers_1.Get)('/how-to'),
+    __param(0, (0, routing_controllers_1.QueryParam)('page')),
+    __param(1, (0, routing_controllers_1.QueryParam)('limit')),
+    __param(2, (0, routing_controllers_1.QueryParam)('sort')),
+    __param(3, (0, routing_controllers_1.QueryParam)('order')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String, String, String, String]),
     __metadata("design:returntype", Promise)
 ], LoftController.prototype, "getHowToDoItList", null);
 __decorate([

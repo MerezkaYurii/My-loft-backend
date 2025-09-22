@@ -21,9 +21,9 @@ const routing_controllers_1 = require("routing-controllers");
 //   myVideoModel,
 //   photoFromInternetModel,
 //   videoFromInternetModel,
-// } from 'db/models/Loft';
+// } from '../../../db/models/Loft';
 const Loft_1 = require("../../../db/models/Loft");
-// import { ApiResponse } from 'helpers/ApiResponse';
+// import { ApiResponse } from '../../../helpers/ApiResponse';
 const ApiResponse_1 = require("../../../helpers/ApiResponse");
 const modelsMap = {
     myPhoto: Loft_1.myPhotoModel,

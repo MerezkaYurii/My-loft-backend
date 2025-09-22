@@ -13,12 +13,12 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const routing_controllers_1 = require("routing-controllers");
-// import { HTTPResponseLogger } from 'app/middlewares/HTTPResponseLogger';
+// import { HTTPResponseLogger } from '../../../app/middlewares/HTTPResponseLogger';
 const HTTPResponseLogger_1 = require("../../middlewares/HTTPResponseLogger");
 const class_validator_1 = require("class-validator");
-// import { ApiResponse } from 'helpers/ApiResponse';
+// import { ApiResponse } from '../../../helpers/ApiResponse';
 const ApiResponse_1 = require("../../../helpers/ApiResponse");
-// import { ApiError } from 'helpers/ApiError';
+// import { ApiError } from '../../../helpers/ApiError';
 const ApiError_1 = require("../../../helpers/ApiError");
 const CreatePerson_dto_1 = require("./CreatePerson.dto");
 const storeData = [];

@@ -1,68 +1,191 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getLoftItemById = exports.createHowToDoIt = exports.createMyEquipment = exports.createVideosFromInternet = exports.createMyVideos = exports.createPhotosFromInternet = exports.createMyPhoto = exports.getHowToDoIt = exports.getMyEquipment = exports.getVideosFromInternet = exports.getMyVideos = exports.getPhotosFromInternet = exports.getMyPhotos = void 0;
-// import {
-//   howToDoItModel,
-//   ILoft,
-//   myEquipmentModel,
-//   myPhotoModel,
-//   myVideoModel,
-//   photoFromInternetModel,
-//   videoFromInternetModel,
-// } from 'db/models/Loft';
 const Loft_1 = require("../../db/models/Loft");
-const getMyPhotos = async () => {
-    const items = await Loft_1.myPhotoModel.find().lean();
-    return items.map((item) => ({
-        ...item,
-        _id: item._id.toString(),
-        category: 'my-photos',
-    }));
+const getMyPhotos = async (pageNum = 1, limitNum = 8, sort = 'createdAt', order = 'desc') => {
+    const sortOption = {
+        [sort]: order === 'asc' ? 1 : -1,
+    };
+    const total = await Loft_1.myPhotoModel.countDocuments();
+    const totalPages = Math.ceil(total / limitNum);
+    const skip = (pageNum - 1) * limitNum;
+    const items = await Loft_1.myPhotoModel
+        .find()
+        .sort(sortOption)
+        .skip(skip)
+        .limit(limitNum)
+        .lean();
+    return {
+        success: true,
+        data: {
+            items: items.map((item) => ({
+                ...item,
+                _id: item._id.toString(),
+                category: 'my-photos',
+            })),
+            pagination: {
+                page: pageNum,
+                limit: limitNum,
+                total: total,
+                totalPages: totalPages,
+            },
+        },
+    };
 };
 exports.getMyPhotos = getMyPhotos;
-const getPhotosFromInternet = async () => {
-    const items = await Loft_1.photoFromInternetModel.find().lean();
-    return items.map((item) => ({
-        ...item,
-        _id: item._id.toString(),
-        category: 'internet-photos',
-    }));
+const getPhotosFromInternet = async (pageNum = 1, limitNum = 8, sort = 'createdAt', order = 'desc') => {
+    const sortOption = {
+        [sort]: order === 'asc' ? 1 : -1,
+    };
+    const total = await Loft_1.photoFromInternetModel.countDocuments();
+    const totalPages = Math.ceil(total / limitNum);
+    const skip = (pageNum - 1) * limitNum;
+    const items = await Loft_1.photoFromInternetModel
+        .find()
+        .sort(sortOption)
+        .skip(skip)
+        .limit(limitNum)
+        .lean();
+    return {
+        success: true,
+        data: {
+            items: items.map((item) => ({
+                ...item,
+                _id: item._id.toString(),
+                category: 'internet-photos',
+            })),
+            pagination: {
+                page: pageNum,
+                limit: limitNum,
+                total,
+                totalPages,
+            },
+        },
+    };
 };
 exports.getPhotosFromInternet = getPhotosFromInternet;
-const getMyVideos = async () => {
-    const items = await Loft_1.myVideoModel.find().lean();
-    return items.map((item) => ({
-        ...item,
-        _id: item._id.toString(),
-        category: 'my-videos',
-    }));
+const getMyVideos = async (pageNum = 1, limitNum = 8, sort = 'createdAt', order = 'desc') => {
+    const sortOption = {
+        [sort]: order === 'asc' ? 1 : -1,
+    };
+    const total = await Loft_1.myVideoModel.countDocuments();
+    const totalPages = Math.ceil(total / limitNum);
+    const skip = (pageNum - 1) * limitNum;
+    const items = await Loft_1.myVideoModel
+        .find()
+        .sort(sortOption)
+        .skip(skip)
+        .limit(limitNum)
+        .lean();
+    return {
+        success: true,
+        data: {
+            items: items.map((item) => ({
+                ...item,
+                _id: item._id.toString(),
+                category: 'my-videos',
+            })),
+            pagination: {
+                page: pageNum,
+                limit: limitNum,
+                total,
+                totalPages,
+            },
+        },
+    };
 };
 exports.getMyVideos = getMyVideos;
-const getVideosFromInternet = async () => {
-    const items = await Loft_1.videoFromInternetModel.find().lean();
-    return items.map((item) => ({
-        ...item,
-        _id: item._id.toString(),
-        category: 'internet-videos',
-    }));
+const getVideosFromInternet = async (pageNum = 1, limitNum = 8, sort = 'createdAt', order = 'desc') => {
+    const sortOption = {
+        [sort]: order === 'asc' ? 1 : -1,
+    };
+    const total = await Loft_1.videoFromInternetModel.countDocuments();
+    const totalPages = Math.ceil(total / limitNum);
+    const skip = (pageNum - 1) * limitNum;
+    const items = await Loft_1.videoFromInternetModel
+        .find()
+        .sort(sortOption)
+        .skip(skip)
+        .limit(limitNum)
+        .lean();
+    return {
+        success: true,
+        data: {
+            items: items.map((item) => ({
+                ...item,
+                _id: item._id.toString(),
+                category: 'internet-videos',
+            })),
+            pagination: {
+                page: pageNum,
+                limit: limitNum,
+                total,
+                totalPages,
+            },
+        },
+    };
 };
 exports.getVideosFromInternet = getVideosFromInternet;
-const getMyEquipment = async () => {
-    const items = await Loft_1.myEquipmentModel.find().lean();
-    return items.map((item) => ({
-        ...item,
-        _id: item._id.toString(),
-        category: 'my-equipment',
-    }));
+const getMyEquipment = async (pageNum = 1, limitNum = 8, sort = 'createdAt', order = 'desc') => {
+    const sortOption = {
+        [sort]: order === 'asc' ? 1 : -1,
+    };
+    const total = await Loft_1.myEquipmentModel.countDocuments();
+    const totalPages = Math.ceil(total / limitNum);
+    const skip = (pageNum - 1) * limitNum;
+    const items = await Loft_1.myEquipmentModel
+        .find()
+        .sort(sortOption)
+        .skip(skip)
+        .limit(limitNum)
+        .lean();
+    return {
+        success: true,
+        data: {
+            items: items.map((item) => ({
+                ...item,
+                _id: item._id.toString(),
+                category: 'my-equipment',
+            })),
+            pagination: {
+                page: pageNum,
+                limit: limitNum,
+                total,
+                totalPages,
+            },
+        },
+    };
 };
 exports.getMyEquipment = getMyEquipment;
-const getHowToDoIt = async () => {
-    const items = await Loft_1.howToDoItModel.find().lean();
-    return items.map((item) => ({
-        ...item,
-        _id: item._id.toString(),
-        category: 'how-to',
-    }));
+const getHowToDoIt = async (pageNum = 1, limitNum = 8, sort = 'createdAt', order = 'desc') => {
+    const sortOption = {
+        [sort]: order === 'asc' ? 1 : -1,
+    };
+    const total = await Loft_1.howToDoItModel.countDocuments();
+    const totalPages = Math.ceil(total / limitNum);
+    const skip = (pageNum - 1) * limitNum;
+    const items = await Loft_1.howToDoItModel
+        .find()
+        .sort(sortOption)
+        .skip(skip)
+        .limit(limitNum)
+        .lean();
+    return {
+        success: true,
+        data: {
+            items: items.map((item) => ({
+                ...item,
+                _id: item._id.toString(),
+                category: 'how-to',
+            })),
+            pagination: {
+                page: pageNum,
+                limit: limitNum,
+                total,
+                totalPages,
+            },
+        },
+    };
 };
 exports.getHowToDoIt = getHowToDoIt;
 const createMyPhoto = (data) => {

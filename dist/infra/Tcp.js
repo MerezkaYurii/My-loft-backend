@@ -7,6 +7,7 @@ exports.Tcp = void 0;
 require("reflect-metadata");
 const express_1 = __importDefault(require("express"));
 const routing_controllers_1 = require("routing-controllers");
+const cors_1 = __importDefault(require("cors"));
 const index_1 = require("../app/domain/index");
 const index_2 = require("../app/middlewares/index");
 const dotenv_1 = __importDefault(require("dotenv"));
@@ -32,6 +33,7 @@ class Tcp {
         // 🧠 Добавляем поддержку multipart/form-data
         // const upload = multer();
         // server.use(upload.any());
+        server.use((0, cors_1.default)());
         server.use(express_1.default.json());
         server.use(express_1.default.urlencoded({ extended: true }));
         // Парсимо тіло запиту, потрібно для middlewares

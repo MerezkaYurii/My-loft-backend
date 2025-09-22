@@ -17,28 +17,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UploadController = void 0;
 const routing_controllers_1 = require("routing-controllers");
-// import cloudinary from 'utils/cloudinary';
 const cloudinary_1 = __importDefault(require("../../../utils/cloudinary"));
-// import {
-//   howToDoItModel,
-//   myEquipmentModel,
-//   myPhotoModel,
-//   myVideoModel,
-//   photoFromInternetModel,
-//   videoFromInternetModel,
-// } from 'db/models/Loft';
 const Loft_1 = require("../../../db/models/Loft");
-// import { upload } from '@app/middlewares/upload.middleware';
 const upload_middleware_1 = require("../../middlewares/upload.middleware");
 class UploadBody {
 }
 const modelsMap = {
     myPhoto: Loft_1.myPhotoModel,
     photoFromInternet: Loft_1.photoFromInternetModel,
+    'internet-photos': Loft_1.photoFromInternetModel,
     myVideo: Loft_1.myVideoModel,
     videoFromInternet: Loft_1.videoFromInternetModel,
+    'internet-videos': Loft_1.videoFromInternetModel,
     myEquipment: Loft_1.myEquipmentModel,
+    'my-equipment': Loft_1.myEquipmentModel,
     howToDoIt: Loft_1.howToDoItModel,
+    'how-to': Loft_1.howToDoItModel,
 };
 let UploadController = class UploadController {
     async uploadFile(req, res) {
