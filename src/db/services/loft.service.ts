@@ -32,16 +32,19 @@ export const getMyPhotos = async (
     .lean();
 
   return {
-    items: items.map((item) => ({
-      ...item,
-      _id: item._id.toString(),
-      category: 'my-photos',
-    })),
-    pagination: {
-      page: pageNum,
-      limit: limitNum,
-      total: total,
-      totalPages: totalPages,
+    success: true,
+    data: {
+      items: items.map((item) => ({
+        ...item,
+        _id: item._id.toString(),
+        category: 'my-photos',
+      })),
+      pagination: {
+        page: pageNum,
+        limit: limitNum,
+        total: total,
+        totalPages: totalPages,
+      },
     },
   };
 };

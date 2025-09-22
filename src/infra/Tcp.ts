@@ -6,7 +6,7 @@ import cors from 'cors';
 // import { IService } from 'types/services';
 import { IService } from '../types/services';
 import { controllers } from '../app/domain/index';
-// import { middlewares } from '../app/middlewares/index';
+import { middlewares } from '../app/middlewares/index';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -48,7 +48,7 @@ export class Tcp implements IService {
     useExpressServer(server, {
       routePrefix,
       controllers,
-      // middlewares,
+      middlewares,
       cors: true,
       defaultErrorHandler: false,
       validation: false, // Відключаємо вбудовану валідацію, щоб ми могли перевірити DTO самі всередині контролера
